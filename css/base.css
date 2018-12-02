@@ -1,0 +1,70 @@
+body{
+	margin:0;
+	color:#555;
+	font:12px 微软雅黑,arial,宋体;
+	box-sizing:border-box;
+}
+.container{
+	width:1200px;
+	margin:0 auto;
+}
+input,button{
+	font-family:微软雅黑,arial,宋体;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{
+	margin:0;
+	padding:0;
+}
+ul,ol{
+	list-style:none;
+}
+a{
+	cursor:pointer;
+	text-decoration:none;
+}
+.font_14{
+	font-size:14px;
+}
+.font_16{
+	font-size:16px;
+}
+.font_18{
+	font-size:18px;
+}
+.font_26{
+	font-size:26px;
+}
+.font_bold{
+	font-weight:bold;
+}
+.font_orange1{
+	color:#EE6A1E;
+}
+.font_gray1{
+	color:#666666;
+}
+.font_white{
+	color:#ffffff;
+}
+.bg_orange1{
+	background-color:#EE6A1E;
+}
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.clearfix:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+.clear_over:before{
+	content:"";
+	display:table;
+}
+/*空img边框隐藏*/
+img[src=""],img:not([src]){
+	opacity:0;
+}

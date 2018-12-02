@@ -1,0 +1,138 @@
+/*header*/
+#header{
+	height:110px;
+	background:url(../image/headbg.jpg) repeat-x left bottom;
+}
+.header1{
+	height:43px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.header1 a img{
+	float:left;
+	height:45px;
+}
+.header1 h1{
+	float:left;
+	font: normal 25px "微软雅黑";
+	height:43px;
+	line-height:43px;
+	border-left:1px solid #c8c8c8;
+	margin-left:20px;
+	padding-left:20px;
+}
+.header2{
+	width:950px;
+	height:14px;
+	text-align:right;
+	margin:10px auto;
+	font-size:14px;
+}
+.header2 a{
+	color:#EC6A1E;
+}
+/*主体*/
+.reg_form{
+	margin-top:30px;
+	float:left;
+}
+.reg_form table{
+	width:620px;
+	height:500px;
+	padding-right:160px;
+	border-right:1px solid #e6e6e6;
+}
+.reg_form table td{
+	padding-right:15px;
+	padding-top:10px;
+	padding-bottom:20px;
+	vertical-align:top;
+	line-height:30px;
+}
+.reg_form table tr td .text{
+	width:324px;
+	height:30px;
+	border:1px solid #C8C8C8;
+	border-radius:5px;
+	outline:0;
+}
+.x_red{
+	color:#f00;
+	vertical-align:middle;
+}
+#checkCodeImg{
+	vertical-align:middle;
+	margin-left:15px;
+}
+#cnumber{
+	width:116px;
+}
+table td .form_row{
+	position:relative;
+}
+#showUname,#showUpwd,#showCpwd,.showCnumber,#showEmail{
+	display:none;
+	position:absolute;
+	left:0px;
+	top:40px;
+	line-height:16px;
+	padding-left:20px;
+	background: url(../image/tips_icon.png) no-repeat left bottom;
+}
+.reg_form table td.pb_10{
+	padding-top:0px;
+}
+.reg_pro{
+	color:#0376cf;
+}
+.reg_pro:hover{
+	color:#F25221;
+}
+#reg_btn{
+	width:320px;
+	height:38px;
+	background:#f25221;
+	color:#fff;
+	font:18px "微软雅黑";
+	cursor:pointer;
+	border:0;
+	border-radius:5px;
+	outline:0;
+}
+.extra_login{
+	float:right;
+	border:1px solid #ddd;
+	border-radius:5px;
+	margin-right:75px;
+	margin-top:20px;
+}
+.extra_login a{
+	width:155px;
+	height:36px;
+	margin:20px 35px;
+	display:block;
+	text-indent:-9999px;
+}
+.extra_login a:nth-child(1){
+	background:url("../image/weibo.png") no-repeat top left;
+	padding-bottom:22px;
+	border-bottom:1px solid #ddd;
+}
+.extra_login a:nth-child(2){
+	background:url("../image/qq.png") no-repeat top left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

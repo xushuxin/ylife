@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+  <!--header-->
+  <header id="header">
+    <!--header1-->
+    <div id="header1">
+      <div class="container clearfix">
+        <ul class="fr" >
+          <li>您好，欢迎来到优生活商城 <span>|</span></li>
+          <li>
+            <a href="user_login.html" class="font_gray1">[请登录]</a>
+            <a href="user_register.html" class="font_gray1">[免费注册]</a>
+            <span>|</span>
+          </li>
+          <li>
+            <div class="dropdown">
+              <a href="#" class="font_gray1">会员中心<i class="rotate"></i></a>
+              <div class="drop_content">
+                  <a href="#" class="font_gray1">我的订单</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <span>|</span>
+            <a href="#" class="font_gray1">加入收藏</a>
+            <span>|</span>
+          </li>
+          <li>
+            <a href="#" class="font_gray1">分享给好友</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--header2-->
+    <div id="header2" class="container">
+        <a href="index.html"><img src="image/logo.jpg" alt="优生活商城"></a>
+        <a href="#"><img src="image/kfrx.jpg" alt="客服热线"></a>
+        <input type="text" class="searchBox" placeholder="膳魔师">
+        <div class="hot">
+          <span>热门搜索：</span>
+          <a href="">大润窑</a>
+          <a href="">公牛</a> 
+          <a href="">锅</a> 
+          <a href="">新榜样</a> 
+          <a href="">加加</a> 
+          <a href="">百安思</a> 
+          <a href="">乐扣</a>
+        </div>
+        <button class="icon_box">
+            <i class="search_icon"></i>
+        </button>
+        <a href="#" class="font_14">
+          <span class="shop_cart"><span class=shop_icon></span>我的购物车</span><span class="count">0</span>
+        </a>
+    </div>
+    <!--nav-->
+    <nav id="nav" class="container">
+      <ul>
+        <li class="fl font_14 drop_list">
+          <div class=drop_btn>
+            <a class="font_white" href="index.html">所有商品分类</a>
+            <span class="arrow"></span>
+          </div>
+          <ul class="drop_menu">
+            <li v-for="(item,i) of nav_list" :key="item.id" class="side_list" :class="i==0?'first':'other'">
+              <div class="side_btn">
+                <img class="smallicon" :src="item.path">
+                <a href="javascript:;">{{item.txt}}</a>
+                <span class="small_arrow"></span>
+              </div>
+              <div class="side_menu">
+                <div class="fl">
+                  <h1><a href="" v-for="item1 of item.title">{{item1}}</a></h1>
+                  <div class="rec_list">
+                    <button class="rec_btn" v-for="item2 of item.index">
+                      <a class="font_white" href="">{{item2}}</a>
+                    </button>
+                  </div>
+                </div>
+                <div class="recommend fr">
+                  <p>推荐品牌</p>
+                  <div v-for="item3 of item.rec_brand">
+                    <a href="#">
+                      <p>{{item3.title}}</p>
+                      <img :src="item3.img">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="active" :style="`top:${item.id*60}px;`"></div>
+            </li>
+          </ul>
+        </li>
+        <li class="fl font_14"><a class="font_gray1" href="index.html">首页</a></li>
+        <li class="fl font_14"><a class="font_gray1" href="index.html">帮助中心</a></li>
+        <li class="fl font_14"><a class="font_gray1" href="index.html">兑换教程</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section id="section">
+    <div class="carousel">
+      <ul class="car_img">
+        <li v-for="item of carousel_list"><img :src="item.src" alt=""></li>
+      </ul>
+      <ul class=car_index>
+        <li></li>
+      </ul>
+    </div>
+  </section>
+  <aside id="aside"></aside>
+  <!--footer-->
+  <iframe src="footer.html" frameborder="0" scrolling="no" style="width:100%;"></iframe>
+</body>
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/index.js"></script>
+<script src="js/header.js"></script>
+
+</html>

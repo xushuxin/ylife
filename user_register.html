@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="css/base.css">
+		<link rel="stylesheet" href="css/reg.css">
+	</head>
+	<body>
+		<!--header-->
+		<div id="header">
+			<div class="header1 container">
+				<a href="index.html"><img src="image/logo.jpg" alt="优生活"></a>
+				<h1>欢迎注册</h1>
+			</div>
+			<div class="header2">
+				<span>我已经注册，现在就</span><a href="user_login.html">登录</a>
+			</div>
+		</div>
+		<!--主体，注册框-->
+		<div id="section" class="container clearfix">
+			<div class="reg_form">
+				<form>
+				<table>
+					<tr>
+						<td align="right">
+								<span class="x_red">*</span>
+								<span class="font_16">手机号：</span>
+						</td>
+						<td>
+							<div class="form_row">
+								<input type="text" name="uname" id="uname" class="text">
+								<span id="showUname">请填写手机号</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<span class="x_red">*</span>
+							<span class="font_16">设置密码：</span>
+						</td>
+						<td>
+							<div class="form_row">
+								<input type="password" name="upwd" id="upwd" class="text" maxlength="20">
+								<span id="showUpwd">请填写密码</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<span class="x_red">*</span>
+							<span class="font_16">确认密码：</span>
+						</td>
+						<td>
+							<div class="form_row">
+								<input type="password" name="cpwd" id="cpwd" class="text" maxlength="20">
+								<span id="showCpwd">请再次填写密码</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<span class="x_red">*</span>
+							<span class="font_16">验证码：</span></td>
+						<td>
+							<div class="form_row">
+								<input type="text" name="cnumber" id="cnumber" class="text">
+								<span class="showCnumber">请填写右图中显示的验证码</span>
+								<img id="checkCodeImg" class="vm ml5" src="https://www.ylife.cn/patchca.htm?090739?0.4653741105140141?0.8804619806741674?0.15501243255699237?0.1559770520545698?0.6091637132762837?0.6957633197908335?0.36701861435441363?0.15109044379624592?0.3673523214898706?0.1885642755181367?0.9219287778490215?0.5055921492324755?0.44958938728333053?0.5947628370857951?0.11115932024907238" alt="验证码" style="cursor:pointer;" onclick="this.src=this.src+'?'+Math.random();">
+								<span style="margin-left:10px;">
+									看不清？
+									<a href="" style="color: #005AA0;">换一张</a>
+								</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="right" >
+							<span class="x_red">*</span>
+							<span class="font_16">邮箱设置：</span>
+						</td>
+						<td>
+							<div class="form_row">
+								<input type="text" name="email" id="email" class="text">
+								<span id="showEmail">请填写邮箱</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td style="padding-bottom:10px;">
+								<input type="checkbox" id="agree" checked>
+								<label for="agree">我已阅读并同意</label>
+								<a href="" class="reg_pro">《商城用户注册协议》</a>
+								<br>
+								<span>请接受服务条款</span>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="pb_10">
+							<input type="button" value="同意并注册" id="reg_btn">
+						</td>
+					</tr>
+				</table>
+				</form>
+			</div>
+			<div class="extra_login">
+				<a href="">新浪微博登录</a>
+				<a href="">腾讯QQ登录</a>
+			</div>
+		</div>
+		<!--footer-->
+		<iframe src="footer.html" frameborder="0" scrolling="no" style="width:100%;height:400px;"></iframe>
+		
+		<!--侧边栏-->
+		<div id="setbar"></div>
+		<script src="js/common.js"></script>
+		<script src="js/reg_script.js"></script>
+	</body>
+</html>
