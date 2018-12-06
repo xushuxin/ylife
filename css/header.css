@@ -37,7 +37,6 @@
   display:inline-block;
   position:relative;
   border:1px solid transparent;
-  width:68px;
   padding:0 4px;
   line-height: 20px;
 }
@@ -45,10 +44,9 @@
   display:none;
   position:absolute;
   border: 1px solid #C7C7C9;
-  width: 76px;
+  width: 73px;
   left: -1px;
-  width:68px;
-  padding:4px;
+  padding:12px 4px;
   background:#fff;
   border-top:0;
   z-index:1;
@@ -186,7 +184,7 @@
   position:absolute;
   display:none;
   top:36px;
-  z-index: 1;
+  z-index: 100;
   border-top:0;
   border-bottom:1px solid #E5E5E5;
 }
@@ -198,12 +196,18 @@
   width:210px;
   height:54px;
   padding-top:4px;
-  background:#fff;
+  background:#FAFAFA;
   border-width:1px;
   border-style:solid;
   border-color:transparent #E5E5E5;
 }
-
+#nav .drop_list .drop_menu .side_list:hover{
+  background:#ffffff;
+}
+#nav .drop_list .drop_menu .side_list .side_btn{
+  position:relative;
+  z-index:3;
+}
 #nav .drop_list .drop_menu .side_list .active{
   display:none;
   position:absolute;

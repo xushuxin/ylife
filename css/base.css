@@ -2,8 +2,11 @@ body{
 	margin:0;
 	color:#555;
 	font:12px 微软雅黑,arial,宋体;
-	box-sizing:border-box;
+	/* box-sizing:border-box; */
 }
+/* *,*:before,*:after{
+	box-sizing:inherit;
+} */
 .container{
 	width:1200px;
 	margin:0 auto;
