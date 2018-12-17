@@ -1,80 +1,197 @@
-var vm=new Vue({
-  el:"#section",/*忘记写了*/
+
+/* 页面加载后让下拉菜单在首页一直显示 */
+window.onload=function(){
+  document.querySelector("#nav>ul>li.drop_list .drop_menu").style.display="block";
+}
+
+//轮播图
+var vm1=new Vue({
+  el:"#section>.carousel",/*忘记写了*/
   data(){
     return{
-      carousel_list:[],
-      index_id:1,
-      today_list:[
-        {id:1,img_url:"http://127.0.0.1:80/images/tody_rec1.jpg",href:""},
-        {id:2,img_url:"http://127.0.0.1:80/images/tody_rec2.jpg",href:""},
-        {id:3,img_url:"http://127.0.0.1:80/images/tody_rec3.jpg",href:""},
-        {id:4,img_url:"http://127.0.0.1:80/images/tody_rec4.jpg",href:""},
-        {id:5,img_url:"http://127.0.0.1:80/images/tody_rec5.jpg",href:""},
-        {id:6,img_url:"http://127.0.0.1:80/images/tody_rec6.jpg",href:""},
-        {id:7,img_url:"http://127.0.0.1:80/images/tody_rec7.jpg",href:""},
-        {id:8,img_url:"http://127.0.0.1:80/images/tody_rec8.jpg",href:""},
-      ],
-      // todayStyle:{marginLeft:"0px"},
-      hot_list:[
-        {id:1,title:"乐扣乐扣收纳箱",price:79.00,img_url:"http://127.0.0.1:80/images/hot1.jpg",href:""},
-        {id:2,title:"优生活 专属奶牛萌萌杯 送勺",price:15.00,img_url:"http://127.0.0.1:80/images/hot2.jpg",href:""},
-        {id:3,title:"HAPPYCALL 多用途双面气压锅",price:870.00,img_url:"http://127.0.0.1:80/images/hot3.jpg",href:""},
-        {id:4,title:"龙的微电脑电饭煲 LD-FS420",price:698.00,img_url:"http://127.0.0.1:80/images/hot4.jpg",href:""},
-        {id:5,title:"光明5800吹风机",price:110.00,img_url:"http://127.0.0.1:80/images/hot5.jpg",href:""},
-        {id:6,title:"新榜样韩式炒锅 A9-23",price:135.00,img_url:"http://127.0.0.1:80/images/hot6.jpg",href:""},
-        {id:7,title:"乐扣乐扣迷你马克单杯200ml(红色)",price:89.00,img_url:"http://127.0.0.1:80/images/hot7.jpg",href:""},
-        {id:8,title:"龙的巧趣系列电烤箱红外加热大容量 LD-KX12A",price:228.00,img_url:"http://127.0.0.1:80/images/hot8.jpg",href:""},
-        {id:9,title:"OLYMPIA 拉杆箱 HE5000 29寸",price:1698.00,img_url:"http://127.0.0.1:80/images/hot9.jpg",href:""},
-        {id:10,title:"公牛 新国标系列插座GN-S1220(以实物为准)",price:58.00,img_url:"http://127.0.0.1:80/images/hot10.jpg",href:""},
-        {id:11,title:"百安思不锈钢双层保温杯BMH-12-4835(金色)",price:175.00,img_url:"http://127.0.0.1:80/images/hot11.jpg",href:""},
-        {id:12,title:"龙的派乐系列电子饭盒LD-FH15C",price:138.00,img_url:"http://127.0.0.1:80/images/hot12.jpg",href:""},
-      ]
+      carousel_list:[],//轮播图列表
+      index_id:0,//轮播图小圆点的下标
+      timer:null,//轮播图定时器
     }
   },
   methods:{
     getcarousel(){
-      axios.get("http://127.0.0.1:80/carousel").then(res=>{//使用axios模块发送ajax异步请求
-        this.carousel_list=res.data.list;//res.data->{code:1,list:[{id:1,src:...},...]}
+      axios.get("http://127.0.0.1:80/index/carousel").then(res=>{//使用axios模块发送ajax异步请求
+        this.carousel_list=res.data.data;//res.data->{code:1,list:[{id:1,src:...},...]}
         console.log(this.carousel_list[0].src);
       })
     },
-    changeimg(index_id){
-      this.index_id=index_id;//把前台点击事件获得的id赋值给vm实例对象的index_id
-      clearInterval(timer);//点击小圆点时，重新设置定时器
-      timer=setInterval(fun,3000);
-      console.log(index_id);
+    changeimg(e){
+      this.index_id=e.target.dataset.id;//把前台点击事件获得的id赋值给vm实例对象的index_id
+      clearInterval(this.timer);//点击小圆点时，重新设置定时器
+      this.carouselauto();//自动轮播
     },
-    prev(){
-      // var left=this.todayStyle.marginLeft.slice(0,-2);
-      // left=parseInt(left);
-      // console.log(left);
-      this.today_list.unshift(this.today_list[7]);
-      this.today_list.pop(this.today_list[8]);
-    },
-    next(){
-      // var left=this.todayStyle.marginLeft.slice(0,-2);
-      // left=parseInt(left);
-      this.today_list.push(this.today_list[0]);
-      this.today_list.shift(this.today_list[0]);
+    carouselauto(){//轮播图定时器
+      this.timer=setInterval(()=>{
+        this.index_id++;
+        if(this.index_id>4){
+          this.index_id=0;
+        } 
+      },3000);
     },
   },  
   created(){
     this.getcarousel();
   },
-})
-//定时器，鼠标进入img清除，离开时重新添加
-var fun=function(){
-  if(vm.index_id==5){
-    vm.index_id=0;
+  mounted(){
+    //获得轮播图主体，鼠标进入清除，离开时重新添加
+    var car_img=document.getElementsByClassName("car_img")[0];
+    console.log(car_img);
+    car_img.onmouseenter=(e)=>{
+      clearInterval(this.timer);
+    }
+    car_img.onmouseleave=(e)=>{
+      this.carouselauto();
+    }
+    this.carouselauto();
   }
-  vm.index_id+=1;
-}
-var timer=setInterval(fun,3000);
-var car_img=document.getElementsByClassName("car_img")[0];
-console.log(car_img);
-car_img.onmouseenter=function(e){
-  clearInterval(timer);
-}
-car_img.onmouseleave=function(e){
-    timer=setInterval(fun,3000);
-}
+})
+
+//今日推荐
+var vm2=new Vue({
+  el:"#section>.today_rec",
+  data(){
+    return{
+      today_list:[],//今日推荐列表
+      transition:"none",
+      marginLeft:0,
+      index:0,//今日推荐指示器
+      clickTime:0,//点击时间，控制点击频率
+      timer:null,//今日推荐定时器
+    }
+  },
+  methods:{
+    gettodayrec(){
+      axios.get("http://127.0.0.1:80/index/todayrec").then(res=>{
+        this.today_list=res.data.data;
+        this.today_list=this.today_list.concat(this.today_list.slice(0,4));//要实现无缝滚动，至少要多四张图
+        console.log(this.today_list);
+      })
+    },
+    prev(){
+      if(new Date() - this.clickTime>500){
+        this.clickTime=new Date();
+        var ul=document.querySelector("#section>.today_rec>.scroll_box>.today_img");
+        if(this.index==0){
+          ul.style.transition="none";
+          ul.style.marginLeft=-280*8+"px";
+          this.index=8;
+        }
+        this.index--;
+        var marginLeft=parseInt(getComputedStyle(ul).marginLeft);
+        ul.style.transition="all 0.5s linear";
+        this.marginLeft=marginLeft+280;
+      }
+    },
+    next(){
+      // console.log(new Date() -this.clickTime);
+      if( new Date() - this.clickTime >500){//第一次点击时this.clickTime是0,一定执行
+        this.clickTime=new Date();//点击后this.clickTime转为当前时间，下次点击时，两次时间差需要大于500ms
+        var ul=document.querySelector("#section>.today_rec>.scroll_box>.today_img");
+        if(this.index==8){
+          ul.style.transition="none";
+          ul.style.marginLeft=0;
+          this.index=0;
+        }
+        this.index++;
+        var marginLeft=parseInt(getComputedStyle(ul).marginLeft);
+        ul.style.transition="all 0.5s linear";
+        this.marginLeft=marginLeft-280;
+      }
+    },
+    
+  },  
+  created(){
+    this.gettodayrec();
+  },
+  mounted(){
+    //今日推荐鼠标移入移出
+    var today_img=document.getElementsByClassName("today_img")[0];
+    today_img.onmouseenter=(e)=>{
+      clearInterval(this.timer);
+    }
+    today_img.onmouseleave=(e)=>{
+      this.timer=setInterval(this.next,3000);
+    }
+    //加载后就调用轮播
+    this.timer=setInterval(this.next,3000);
+    //窗口是否打开
+    // window.onfocus=()=>{
+    //   clearInterval(this.timer);
+    //   this.todayrecauto();
+    // }
+    // window.onblur=()=>{
+    //   clearInterval(this.timer);
+    // }
+  },
+  destroyed(){
+    clearInterval(this.timer);
+  }
+})
+
+//热门推荐
+var vm3=new Vue({
+  el:"#section>.hot_rec",/*忘记写了*/
+  data(){
+    return{
+      hot_list:[],//热门推荐列表
+    }
+  },
+  methods:{
+    gethotrec(){
+      axios.get("http://127.0.0.1:80/index/hotrec").then(res=>{
+        this.hot_list=res.data.data;
+      })
+    },
+    changeAnother(){//热门推荐切换显示的商品列表
+      var arr1=this.hot_list.slice(0,6);
+      var arr2=this.hot_list.slice(6);
+      this.hot_list=arr2.concat(arr1); 
+    },
+  },
+  created(){
+    this.gethotrec();
+  }
+})
+
+//首页主体1,2,3,4楼
+var vm4=new Vue({
+  el:"#section>.floor",
+  data(){
+    return {
+      list:[],
+    }
+  },
+  methods:{
+    getFloorIMages(){
+      axios.get()
+    }
+  },
+  create(){
+
+  },
+  mounted(){
+    //2F轮播
+    (function(){
+      var el=document.querySelector("#section>.floor>.floor2>.box>.right>ul>li:first-child");
+      myCarousel(el,2,440,500,"linear");//元素，图片张数，图片宽度，轮播间隔时间，时间曲线
+    })();
+    //3F轮播
+    (function(){
+      var el=document.querySelector("#section .floor3 .right .my_carousel");
+      myCarousel(el,2,396,500,"linear");
+    })();
+    
+  }
+})
+
+
+
+
+
+  

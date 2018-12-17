@@ -1,7 +1,7 @@
 /*header*/
 #header{
 	height:110px;
-	background:url(../image/headbg.jpg) repeat-x left bottom;
+	background:url(http://127.0.0.1:80/images/headbg.jpg) repeat-x left bottom;
 }
 .header1{
 	height:43px;
@@ -77,7 +77,7 @@ table td .form_row{
 	top:40px;
 	line-height:16px;
 	padding-left:20px;
-	background: url(../image/tips_icon.png) no-repeat left bottom;
+	background: url(http://127.0.0.1:80/images/tips_icon.png) no-repeat left bottom;
 }
 .reg_form table td.pb_10{
 	padding-top:0px;
@@ -114,12 +114,12 @@ table td .form_row{
 	text-indent:-9999px;
 }
 .extra_login a:nth-child(1){
-	background:url("../image/weibo.png") no-repeat top left;
+	background:url("http://127.0.0.1:80/images/weibo.png") no-repeat top left;
 	padding-bottom:22px;
 	border-bottom:1px solid #ddd;
 }
 .extra_login a:nth-child(2){
-	background:url("../image/qq.png") no-repeat top left;
+	background:url("http://127.0.0.1:80/images/qq.png") no-repeat top left;
 }
 
 

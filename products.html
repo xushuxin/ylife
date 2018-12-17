@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+  <header id="header"></header>
+  <section id="section" >
+    <div class="nav"> 
+      <div class="container">
+        <span>全部结果 > </span>
+        <span>"<span>大润窑</span>"</span>
+      </div>
+    </div>
+    <div class="sift container"><!-- 筛选 -->
+      <ul>
+        <li>
+          <span class="title">品牌:</span>
+          <span>大润窑</span>
+          <span>HAPPYCALL</span>
+          <span>赫曼德</span>
+          <span>大草源</span>
+          <span>宜阁</span>
+          <span>乐扣乐扣</span>
+          <span>膳魔师</span>
+          <span>裕华思羽</span>
+          <span>金龙鱼</span>
+          <span>龙的</span>
+        </li>
+        <li>
+          <span class="title">价格:</span>
+          <span>0-100</span>
+          <span>101-200</span>
+          <span>201-300</span>
+          <span>301-400</span>
+          <span>401-500</span>
+          <span>501-600</span>
+          <span>601-700</span>
+          <span>701-800</span>
+          <span>801-900</span>
+          <span>901-1000</span>
+          <span>1000以上</span>
+        </li>
+        <li>
+          <span class="title">材质:</span>
+          <span> 06cr不锈钢</span>
+          <span>陶瓷</span>
+          <span>汝窑</span>
+          <span>不锈钢</span>
+          <span>青瓷</span>
+          <span>高硼硅玻璃</span>
+          <span>合金</span>
+          <span>其它</span>
+        </li>
+        <li>
+          <span class="title">选购热点:</span>
+          <span>热卖款</span>
+          <span>高品质</span>
+          <span> 耐高温</span>
+        </li>
+        <li>
+          <span class="title">容量:</span>
+          <span>201-300ml</span>
+          <span>301-400ml</span>
+          <span>401-500ml</span>
+          <span>800ml以上略</span>
+        </li>
+        <li>
+          <span class="title">适用人群:</span>
+          <span>通用</span>
+          <span>儿童</span>
+        </li>
+      </ul>
+      <div class="spread" @click="change"><!-- 展开 -->
+        <span>展开</span>
+        <span></span>
+      </div>
+    </div>
+    <div class="products container">
+      <div class="aside fl">
+        <p class="font_bold font_14">浏览过的商品</p>
+        <div class="visited"></div>
+      </div>
+      <div class="section fl">
+        <div class="filter">
+          <div class="left fl">
+            <span class="title">排序:</span>
+            <span>销量</span>
+            <span>价格</span>
+            <span>人气</span>
+            <span>上架时间</span>
+          </div>
+          <div class="center fl">
+            <input type="text" placeholder="￥">
+            <span>-</span>
+            <input type="text" placeholder="￥">
+            <button class="font_white">确定</button>
+          </div>
+          <div class="right fl">
+            <span>共31个商品</span>
+            <span><span>1</span>/2</span>
+            <span>上一页</span>
+            <span>下一页</span>
+          </div>
+        </div>
+        <div class="content"></div>
+      </div>
+    </div>
+  </section>
+<script src="js/axios.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/header.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>
