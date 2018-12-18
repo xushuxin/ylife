@@ -76,20 +76,19 @@
   border-top:0;
   padding:5px;
 }
-#section>.products>.section>.filter{
+#section>.products>.main>.filter{
   width:988px;
   border:1px solid #EEEEEE;
   height:51px;
-  margin-left:10px;
   line-height:51px;
+  margin-left:10px;
 }
-#section>.products>.section>.filter span{
-  display: inline-block;
-}
-#section>.products>.section>.filter>.left{
+
+#section>.products>.main>.filter>.left{
   margin-left:20px;
 }
-#section>.products>.section>.filter span:not(:first-child){
+#section>.products>.main>.filter>div>span{
+  display: inline-block;
   margin:0 5px;
   height:30px;
   line-height: 30px;
@@ -98,21 +97,21 @@
   border-radius:3px;
   padding:0px 10px;
 }
-#section>.products>.section>.filter span:first-child{
+#section>.products>.main>.filter>div>.title{
   margin-right:10px;
+  border:0;
 }
-#section>.products>.section>.filter>.center{
-  margin-left:30px;
-  margin-right:110px;
+#section>.products>.main>.filter>.center{
+  margin:0 30px;
 }
-#section>.products>.section>.filter>.center>input{
+#section>.products>.main>.filter>.center>input{
   width:60px;
   height:30px;
   outline:0;
   border:1px solid #EEEEEE;
   border-radius:3px;
 }
-#section>.products>.section>.filter>.center>button{
+#section>.products>.main>.filter>.center>button{
   width:40px;
   height:30px;
   background:#DF1738;
@@ -122,11 +121,67 @@
   margin-left: 10px;
   outline:0;
 }
-#section>.products>.section>.filter>.right>:nth-child(1),#section>.products>.section>.filter>.right>:nth-child(2)>span{
+#section>.products>.main>.filter>.right>:nth-child(1),#section>.products>.main>.filter>.right>:nth-child(2)>span{
   color:#DF1738;
   font-weight:bold;
 }
-#section>.products>.section>.filter>.right>:nth-child(2){
+#section>.products>.main>.filter>.right>:nth-child(1){
+  padding:0 20px;
+}
+#section>.products>.main>.filter>.right>:nth-child(2){
   margin:0 10px;
+}
+/* 商品列表 */
+#section>.products>.main>.product_list{
+  width:1000px;
+}
+#section>.products>.main>.product_list>ul>li{
+  width:238px;
+  height:380px;
+  border:1px solid #EEEEEE;
+  margin:20px 0px 0px 10px;
+  float:left;
+}
+#section>.products>.main>.product_list>ul>li>div{
+  padding:5px 0px;
+}
+#section>.products>.main>.product_list>ul>li>div>div{
+  width:220px;
+  margin:5px auto;
+}
+#section>.products>.main>.product_list>ul>li>div>.img>a>img{
+ width:220px;
+ height:220px;
+}
+#section>.products>.main>.product_list>ul>li>div>.price{
+ color:#DF1738;
+ font-size: 26px;
+}
+#section>.products>.main>.product_list>ul>li>div>.title>a{
+ font-size:16px;
+ color:#666666;
+}
+#section>.products>.main>.product_list>ul>li>div>.status{
+  text-align:right;
+}
+
+#section>.products>.main>.product_list>ul>li>div>.operation>span{
+  float:left;
+  line-height:30px;
+  height:30px;
+  text-align:center;
+  width:59px;
+  border:1px solid #EEEEEE;
+  border-right:0;
+  cursor:pointer;
+}
+#section>.products>.main>.product_list>ul>li>div>.operation>span:nth-child(3){
+  width:98px;
+  border:1px solid #EEEEEE;
+  color:#DF1738;
+}
+#section>.products>.main>.product_list>ul>li>div>.operation>span>img{/* 奇数子元素 */
+  vertical-align:middle;
+  padding-right: 5px;
 }
 

@@ -45,3 +45,36 @@ new Vue({
   }
 })
 
+
+new Vue({
+  el:"#section>.products",
+  data(){
+    return{
+      list:[],
+    }
+  },
+  methods:{
+    contrast(){
+      var img=this.$el.querySelector(".main>.product_list div .operation>span:first-child>img");
+      // console.log(img.src.indexOf("checked")!=-1);//不可直接把获得的src与字符串相比较
+      if(img.src.indexOf("checked")==-1){//未查找到checked
+        img.src="http://127.0.0.1:80/images/checked.jpg";
+      }else{
+        img.src="http://127.0.0.1:80/images/no-check.jpg";
+      }
+    },
+    attention(){
+      var img=this.$el.querySelector(".main>.product_list div .operation span:nth-child(2)>img");
+      // console.log(img.src.indexOf("checked")!=-1);//不可直接把获得的src与字符串相比较
+      if(img.src.indexOf("g-love")==-1){
+        img.src="http://127.0.0.1:80/images/g-love.png";
+      }else{
+        img.src="http://127.0.0.1:80/images/r-love.png";
+      }
+    },
+    add(){
+
+    }
+  }
+})
+

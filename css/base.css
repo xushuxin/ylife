@@ -89,6 +89,9 @@ a{
 	content:"";
 	display:table;
 }
+.cursor{
+	cursor:pointer;
+}
 /*空img边框隐藏*/
 img[src=""],img:not([src]){
 	opacity:0;
