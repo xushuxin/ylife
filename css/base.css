@@ -1,3 +1,6 @@
+[v-cloak]{
+  display:none;
+}
 body{
 	margin:0;
 	color:#555;
@@ -8,9 +11,10 @@ body{
 	-moz-box-sizing:border-box;
 	 box-sizing:border-box;  */
 }
+
 /* *,*:before,*:after{
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
+	-webkit-box-sizing:inherit;
+	-moz-box-sizing:inherit;
 	box-sizing:inherit;
 } */
 .container{
@@ -37,6 +41,7 @@ ul,ol{
 a{
 	cursor:pointer;
 	text-decoration:none;
+	color:#666666;
 }
 .font_14{
 	font-size:14px;

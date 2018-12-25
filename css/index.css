@@ -342,12 +342,10 @@
   text-align:left;
   position:relative;
 }
-#section>.floor>.floor2>.box>.right>ul>li:first-child>ul:first-child{
-  width:1320px;
-  height:240px;
-}
+
 #section>.floor>.floor2>.box>.right>ul>li:first-child>ul:first-child>li{
   float:left;
+  height:240px;
 }
 #section>.floor>.floor2>.box>.right>ul>li:first-child>ul>li>a>img{
   width:440px;
@@ -388,7 +386,6 @@
 }
 
 #section>.floor>.floor3>.box>.right>ul>li:nth-child(2)>ul:first-child{
-  width:1188px;
   height: 480px;
 }
 #section>.floor>.floor3>.box>.right>ul>li:nth-child(2)>ul:first-child>li{

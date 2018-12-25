@@ -21,30 +21,48 @@
           {id:5,path:"http://127.0.0.1:80/images/category-pic-6.jpg", txt:"居家收纳",title:["居家生活","精品家纺"],index:["衣架","居家小物件","收纳盒"],rec_brand:[{title:"好太太",img:"http://127.0.0.1:80/images/haotaitai.jpg"}]},
           {id:6,path:"http://127.0.0.1:80/images/category-pic-7.jpg", txt:"功能箱包",title:["居家生活"],index:["拉杆箱","双肩包"],rec_brand:[{title:"OLYMPIA",img:"http://127.0.0.1:80/images/olympia.jpg"}]}
         ],
-        uname:"",
-        text:"[请登录]",
-        display:"inline"
+        name:"",
+        isLogin:false,
+        kwords:"",
+        string:""//用于保存地址栏的查询字符串?kwords=...
       } 
     },
     methods:{
       loginStatus(){// 登录状态
         //获取sessionStorage用户名
-        this.uname=sessionStorage.getItem("uname");
+        this.name=sessionStorage.getItem("name");
         //如果有用户名
-        if(this.uname){
-          this.text="退出";
-          this.display="none";
-        }
+        if(this.name) this.isLogin=true;
       },
       logout(){
-        if(this.uname){
-          sessionStorage.removeItem("uname");
+        if(this.name){
+          sessionStorage.removeItem("name");
+          this.isLogin=false;
+        }
+      },
+      search(){
+        if(this.kwords.trim()!==""){//如果关键词不为空
+          location.href="products.html?kwords="+this.kwords;
         }
       }
     },
     mounted(){
       this.loginStatus();
+      this.string=location.search;
+    },
+    watch:{
+      string(val){//监听data中的string的值得变化，val既是值
+        if(val.indexOf("kwords=")!=-1){
+          this.kwords=decodeURIComponent(val.split("=")[1]);//decodeURIComponent解码数字以及字母汉字，decodeURI只解码空格
+          // console.log(this.kwords)
+        }
+      }
     }
    })
+ })
+ Vue.directive("focus",{//添加全局自定义指令，让输入框获得焦点
+  inserted(el){
+    el.focus();
+  }
  })
 

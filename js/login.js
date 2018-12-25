@@ -36,7 +36,12 @@ $(function(){
             msg1.hide();
             msg2.hide();
             alert("登录成功");
-            sessionStorage.setItem("uname",uname);
+            var user_name=res.user_name;
+            if(user_name){//如果用户姓名不为空
+              sessionStorage.setItem("name",user_name);
+            }else{
+              sessionStorage.setItem("name",uname);
+            }
             location.href="index.html";
           }else{
             msg1.hide();

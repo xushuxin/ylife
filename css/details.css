@@ -1,0 +1,120 @@
+body{
+  background:#F5F5F5;
+}
+/* 导航 */
+#section>.nav,#section>.goods_intro{
+  background:#fff;
+}
+#section>.nav{
+ border-bottom:1px solid #666666;
+ padding:5px 0;
+}
+#section>.nav>div{
+  height:30px;
+  line-height:30px;
+}
+#section>.nav>div>span{
+  float:left;
+  margin:0 1px;
+}
+#section>.nav>div>span>a:hover{
+  color:#CC3333;
+}
+/* 商品介绍 */
+#section>.goods_intro{
+  height:550px;
+  border:1px solid #666666;
+  margin-top:5px;
+  padding-top:20px;
+}
+#section>.goods_intro>.left{
+  width:350px;
+  margin:0 20px;
+}
+#section>.goods_intro>.left>ul{
+  position:relative;
+  width:350px;
+  height:350px;
+  margin:0 auto;
+  margin-bottom:10px;
+}
+#section>.goods_intro>.left>ul>li{
+  position:absolute;
+  height:350px;
+}
+#section>.goods_intro>.left>.mImg img{
+  width:350px;
+  height:350px;
+}
+
+#section>.goods_intro>.left .sImg .fixed_box{
+  width:300px;
+  overflow:hidden;
+}
+
+#section>.goods_intro>.left .sImg ul{
+  width:1000px;
+}
+#section>.goods_intro>.left .sImg ul>li{
+  float:left;
+  height:50px;
+  border:1px solid #faa;
+  margin-right:10px;
+  cursor:pointer;
+}
+#section>.goods_intro>.left .sImg img{
+  width:50px;
+  height:50px;
+}
+#section>.goods_intro>.left .btn{
+  display:block;
+  width:25px;
+  height:52px;
+  background:url(http://127.0.0.1:80/images/thumb_btns.gif) no-repeat left  -57px;
+  cursor:pointer;
+}
+#section>.goods_intro>.left .btn.btn-rt{
+  background-position:right -57px;
+}
+#section>.goods_intro>.left>.share-atten{
+  margin-top:20px;
+}
+#section>.goods_intro>.left .share>:nth-child(n){
+  float:left;
+}
+#section>.goods_intro>.left .share img{
+  width:24px;
+  height:24px;
+  vertical-align: middle;
+  padding-left:5px;
+}
+#section>.goods_intro>.left .atten{
+  width:100px;
+  text-indent:29px;
+  background:url("http://127.0.0.1:80/images/s-love.png") no-repeat left center;
+  background-size:24px 24px;
+  cursor:pointer;
+}
+#section>.goods_intro>.left .atten:hover{
+  color:#CC3333;
+}
+
+#section>.goods_intro>.right{
+  width:560px;
+}
+#section>.goods_intro>.right>.title{
+  color:#333333;
+}
+#section>.goods_intro .right dt,#section>.goods_intro .right dd{
+  float:left;
+}
+#section>.goods_intro .right dt{
+  width:70px;
+  text-align:right;
+}
+#section>.goods_intro>.right>.pd_info{
+  margin:10px 0; 
+}
+#section>.goods_intro>.right>.pd_info>div{
+  margin:10px 0;
+}

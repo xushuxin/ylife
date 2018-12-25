@@ -36,23 +36,32 @@
 #header1 ul li .dropdown{
   display:inline-block;
   position:relative;
-  border:1px solid transparent;
-  padding:0 4px;
   line-height: 20px;
+  border:1px solid transparent;
+}
+#header1 ul li .dropdown>a{/* 让a标签定位设置下边框白色 */
+  display:block;
+  width:76px;
+  height:20px;
+  position:relative;
+  border-bottom:1px solid #fff;
+  z-index:2;
+  padding:0 5px;
 }
 .drop_content{
   display:none;
   position:absolute;
   border: 1px solid #C7C7C9;
-  width: 73px;
+  width: 78px;
   left: -1px;
-  padding:12px 4px;
+  top:20px;
+  padding:12px 5px;
   background:#fff;
-  border-top:0;
   z-index:1;
 }
 #header1>div>ul>li:nth-child(3) .dropdown:hover{
   border: 1px solid #C7C7C9;
+  background:#fff;
 }
 #header1>div>ul>li:nth-child(3) .dropdown:hover .drop_content{
   display:block;
@@ -87,6 +96,7 @@
   vertical-align:middle;
   outline:0;
   text-indent:10px;
+  font-size:12px;
 }
 .icon_box{
   width:82px;
@@ -97,6 +107,7 @@
   margin-left:-5px;
   border:0;
   outline:none;
+  cursor:pointer;
 }
 .search_icon{
   display:block;
@@ -358,15 +369,18 @@
   height:30px;
 }
 
-#nav .side_menu>div>.rec_list>.rec_btn{
+#nav .side_menu>div>.rec_list>a{
+  margin-left:13px;
+}
+#nav .side_menu>div>.rec_list>a>.rec_btn{
   width:115px;
   height:29px;
   border:0;
   border-radius:3px;
-  margin-left:13px;
   background:#FB7523;
+  cursor:pointer;
 }
-#nav .side_menu>div>.rec_list>.rec_btn:hover{
+#nav .side_menu>div>.rec_list>a>.rec_btn:hover{
   background:#D40000;
 }
 #nav .side_menu>div>.rec_list{

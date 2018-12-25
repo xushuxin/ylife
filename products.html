@@ -21,178 +21,139 @@
       <ul>
         <li>
           <span class="title">品牌:</span>
-          <span>大润窑</span>
-          <span>HAPPYCALL</span>
-          <span>赫曼德</span>
-          <span>大草源</span>
-          <span>宜阁</span>
-          <span>乐扣乐扣</span>
-          <span>膳魔师</span>
-          <span>裕华思羽</span>
-          <span>金龙鱼</span>
-          <span>龙的</span>
+          <span><a href="">大润窑</a></span>
+          <span><a href="">HAPPYCALL</a></span>
+          <span><a href="">赫曼德</a></span>
+          <span><a href="">大草源</a></span>
+          <span><a href="">宜阁</a></span>
+          <span><a href="">乐扣乐扣</a></span>
+          <span><a href="">膳魔师</a></span>
+          <span><a href="">裕华思羽</a></span>
+          <span><a href="">金龙鱼</a></span>
+          <span><a href="">龙的</a></span>
         </li>
         <li>
           <span class="title">价格:</span>
-          <span>0-100</span>
-          <span>101-200</span>
-          <span>201-300</span>
-          <span>301-400</span>
-          <span>401-500</span>
-          <span>501-600</span>
-          <span>601-700</span>
-          <span>701-800</span>
-          <span>801-900</span>
-          <span>901-1000</span>
-          <span>1000以上</span>
+          <span><a href="">0-100</a></span>
+          <span><a href="">101-200</a></span>
+          <span><a href="">201-300</a></span>
+          <span><a href="">301-400</a></span>
+          <span><a href="">401-500</a></span>
+          <span><a href="">501-600</a></span>
+          <span><a href="">601-700</a></span>
+          <span><a href="">701-800</a></span>
+          <span><a href="">801-900</a></span>
+          <span><a href="">901-1000</a></span>
+          <span><a href="">1000以上</a></span>
         </li>
         <li>
           <span class="title">材质:</span>
-          <span> 06cr不锈钢</span>
-          <span>陶瓷</span>
-          <span>汝窑</span>
-          <span>不锈钢</span>
-          <span>青瓷</span>
-          <span>高硼硅玻璃</span>
-          <span>合金</span>
-          <span>其它</span>
+          <span><a href="">06cr不锈钢</a></span>
+          <span><a href="">陶瓷</a></span>
+          <span><a href="">汝窑</a></span>
+          <span><a href="">不锈钢</a></span>
+          <span><a href="">青瓷</a></span>
+          <span><a href="">高硼硅玻璃</a></span>
+          <span><a href="">合金</a></span>
+          <span><a href="">其它</a></span>
         </li>
         <li>
           <span class="title">选购热点:</span>
-          <span>热卖款</span>
-          <span>高品质</span>
-          <span> 耐高温</span>
+          <span><a href="">热卖款</a></span>
+          <span><a href="">高品质</a></span>
+          <span><a href="">耐高温</a></span>
         </li>
         <li>
           <span class="title">容量:</span>
-          <span>201-300ml</span>
-          <span>301-400ml</span>
-          <span>401-500ml</span>
-          <span>800ml以上略</span>
+          <span><a href="">201-300ml</a></span>
+          <span><a href="">301-400ml</a></span>
+          <span><a href="">401-500ml</a></span>
+          <span><a href="">800ml以上</a></span>
         </li>
         <li>
           <span class="title">适用人群:</span>
-          <span>通用</span>
-          <span>儿童</span>
+          <span><a href="">通用</a></span>
+          <span><a href="">儿童</a></span>
         </li>
       </ul>
-      <div class="spread" @click="change"><!-- 展开 -->
+      <div class="spread" @click="changeStyle"><!-- 展开 -->
         <span>展开</span>
         <span></span>
       </div>
     </div>
-    <div class="products container">
+    <div class="products container clearfix">
       <div class="aside fl">
         <p class="font_bold font_14">浏览过的商品</p>
         <div class="visited"></div>
       </div>
       <div class="main fl">
         <div class="filter">
-          <div class="left fl">
+          <div class="left">
             <span class="title">排序:</span>
             <span>销量</span>
             <span>价格</span>
             <span>人气</span>
             <span>上架时间</span>
           </div>
-          <div class="center fl">
+          <div class="center">
             <input type="text" placeholder="￥">
             <span>-</span>
             <input type="text" placeholder="￥">
             <button class="font_white">确定</button>
           </div>
-          <div class="right fl">
-            <span>共31个商品</span>
-            <span><span>1</span>/2</span>
-            <span>上一页</span>
-            <span>下一页</span>
+          <div class="right" v-cloak>
+            <span>共{{count}}个商品</span>
+            <span><span>{{pno}}</span>/2</span>
+            <span class="btn" :disabled="pno==1||count==0?true:false"  @click="prevPage">上一页</span>
+            <span class="btn" :disabled="pno==pageCount||count==0?true:false" @click="nextPage">下一页</span>
           </div>
         </div>
         <div class="product_list">
-          <ul class="clearfix">
-            <li>
+          <ul class="clearfix" v-cloak>
+            <li v-for="(item,i) of list" :key="i">
               <div>
                 <div class="img">
-                  <a href=""><img src="http://127.0.0.1:80/images/products03Big1.jpg" alt=""></a> 
+                  <a :href="`details.html?id=${item.id}`"><img :src="item.md" alt=""></a> 
                 </div>
-                <div class="price">￥85</div>
-                <div class="title"><a href="">大润窑10头汝窑茶具</a></div>
-                <div class="status">有货</div>
+                <div class="price">￥{{item.price}}</div>
+                <div class="title"><a :href="`details.html?id=${item.id}`" v-color="change" :data-title="item.title" :data-kwords="kwords">{{item.title}}</a></div>
+                <div class="status">{{item.isCount==1?"有货":"无货"}}</div>
                 <div class="operation clearfix">
                   <span @click="contrast"><img src="http://127.0.0.1:80/images/no-check.jpg" alt="">对比</span>
                   <span @click="attention"><img src="http://127.0.0.1:80/images/g-love.png" alt="">关注</span>
                   <span @click="add"><img src="http://127.0.0.1:80/images/cart.png" alt="">加入购物车</span>
                 </div>
               </div>
-            </li>
-            <li>
-              <div>
-                <div class="img">
-                  <a href=""><img src="http://127.0.0.1:80/images/products03Big1.jpg" alt=""></a> 
-                </div>
-                <div class="price">￥85</div>
-                <div class="title"><a href="">大润窑10头汝窑茶具</a></div>
-                <div class="status">有货</div>
-                <div class="operation clearfix">
-                  <span @click="contrast"><img src="http://127.0.0.1:80/images/no-check.jpg" alt="">对比</span>
-                  <span @click="attention"><img src="http://127.0.0.1:80/images/g-love.png" alt="">关注</span>
-                  <span @click="add"><img src="http://127.0.0.1:80/images/cart.png" alt="">加入购物车</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div>
-                <div class="img">
-                  <a href=""><img src="http://127.0.0.1:80/images/products03Big1.jpg" alt=""></a> 
-                </div>
-                <div class="price">￥85</div>
-                <div class="title"><a href="">大润窑10头汝窑茶具</a></div>
-                <div class="status">有货</div>
-                <div class="operation clearfix">
-                  <span @click="contrast"><img src="http://127.0.0.1:80/images/no-check.jpg" alt="">对比</span>
-                  <span @click="attention"><img src="http://127.0.0.1:80/images/g-love.png" alt="">关注</span>
-                  <span @click="add"><img src="http://127.0.0.1:80/images/cart.png" alt="">加入购物车</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div>
-                <div class="img">
-                  <a href=""><img src="http://127.0.0.1:80/images/products03Big1.jpg" alt=""></a> 
-                </div>
-                <div class="price">￥85</div>
-                <div class="title"><a href="">大润窑10头汝窑茶具</a></div>
-                <div class="status">有货</div>
-                <div class="operation clearfix">
-                  <span @click="contrast"><img src="http://127.0.0.1:80/images/no-check.jpg" alt="">对比</span>
-                  <span @click="attention"><img src="http://127.0.0.1:80/images/g-love.png" alt="">关注</span>
-                  <span @click="add"><img src="http://127.0.0.1:80/images/cart.png" alt="">加入购物车</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div>
-                <div class="img">
-                  <a href=""><img src="http://127.0.0.1:80/images/products03Big1.jpg" alt=""></a> 
-                </div>
-                <div class="price">￥85</div>
-                <div class="title"><a href="">大润窑10头汝窑茶具</a></div>
-                <div class="status">有货</div>
-                <div class="operation clearfix">
-                  <span @click="contrast"><img src="http://127.0.0.1:80/images/no-check.jpg" alt="">对比</span>
-                  <span @click="attention"><img src="http://127.0.0.1:80/images/g-love.png" alt="">关注</span>
-                  <span @click="add"><img src="http://127.0.0.1:80/images/cart.png" alt="">加入购物车</span>
-                </div>
-              </div>
-            </li>
+            </li> 
           </ul>        
+        </div>
+        <div class="change_page fr" v-if="count!=0">
+          <button class="btn" :disabled="pno==1?true:false" @click="prevPage">上一页</button>
+          <span v-for="(item,i) of pageCount" :key="i" :class="item==pno?'active':''" @click="change" :data-pno="item">{{item}}</span>
+          <button class="btn" :disabled="pno==pageCount?true:false" @click="nextPage">下一页</button>
+        </div>
+        <div v-else="count==0" class="noProduct">
+          <h6>没有搜索到商品，修改一下搜索条件说不定会有意外收获哦！</h6>
+          <h6>
+            <span>大家正在搜：</span>
+            <a href="products.html?kwords=大润窑">大润窑</a>                  
+            <a href="products.html?kwords=大润窑">公牛</a>
+            <a href="products.html?kwords=大润窑">锅</a>
+            <a href="products.html?kwords=大润窑">百安思</a>
+            <a href="products.html?kwords=大润窑">新榜样</a>
+            <a href="products.html?kwords=大润窑">乐扣</a>
+            <a href="products.html?kwords=大润窑">加加</a>
+            <span>您也去看看吧！</span>
+          </h6>
         </div>
       </div>
     </div>
   </section>
+  <footer id="footer" class="container"></footer>
 <script src="js/axios.min.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/header.js"></script>
 <script src="js/products.js"></script>
+<script src="js/footer.js"></script>
 </body>
 </html>

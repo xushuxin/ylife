@@ -1,3 +1,4 @@
+
 #section>.nav{
   border-bottom:1px solid #D1CFCF;
   height:36px;
@@ -26,6 +27,12 @@
 }
 #section>.sift>ul>li>span{
  padding-right:30px;
+}
+#section>.sift>ul>li>span>a{
+ color:#666666;
+}
+#section>.sift>ul>li>span>a:hover{
+ color:#DF1738;
 }
 #section>.sift>ul>li>span.title{
  padding-left:50px;
@@ -80,13 +87,12 @@
   width:988px;
   border:1px solid #EEEEEE;
   height:51px;
-  line-height:51px;
   margin-left:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-#section>.products>.main>.filter>.left{
-  margin-left:20px;
-}
 #section>.products>.main>.filter>div>span{
   display: inline-block;
   margin:0 5px;
@@ -96,20 +102,24 @@
   border:1px solid #EEEEEE;
   border-radius:3px;
   padding:0px 10px;
+  vertical-align:middle;
 }
 #section>.products>.main>.filter>div>.title{
   margin-right:10px;
   border:0;
 }
-#section>.products>.main>.filter>.center{
-  margin:0 30px;
+#section>.products>.main>.filter>.left>:not(.title):hover{
+  cursor:pointer;
+  color:#DF1738;
 }
+
 #section>.products>.main>.filter>.center>input{
   width:60px;
   height:30px;
   outline:0;
   border:1px solid #EEEEEE;
   border-radius:3px;
+  vertical-align:middle;
 }
 #section>.products>.main>.filter>.center>button{
   width:40px;
@@ -120,6 +130,8 @@
   font-size:12px;
   margin-left: 10px;
   outline:0;
+  vertical-align:middle;
+  cursor:pointer;
 }
 #section>.products>.main>.filter>.right>:nth-child(1),#section>.products>.main>.filter>.right>:nth-child(2)>span{
   color:#DF1738;
@@ -131,19 +143,31 @@
 #section>.products>.main>.filter>.right>:nth-child(2){
   margin:0 10px;
 }
+#section>.products>.main>.filter>.right>:nth-child(3){
+  background:url(http://127.0.0.1:80/images/op_prev.gif) no-repeat 5% center;
+}
+#section>.products>.main>.filter>.right>:nth-child(4){
+  background:url(http://127.0.0.1:80/images/op_next.gif) no-repeat 95% center;
+}
 /* 商品列表 */
 #section>.products>.main>.product_list{
   width:1000px;
 }
 #section>.products>.main>.product_list>ul>li{
   width:238px;
-  height:380px;
-  border:1px solid #EEEEEE;
+  height:375px;
+  border:1px solid transparent;
   margin:20px 0px 0px 10px;
   float:left;
 }
+#section>.products>.main>.product_list>ul>li:hover{
+  border-color:#faa;
+}
 #section>.products>.main>.product_list>ul>li>div{
   padding:5px 0px;
+}
+#section>.products>.main>.product_list>ul>li>div>.img{
+  height:220px;
 }
 #section>.products>.main>.product_list>ul>li>div>div{
   width:220px;
@@ -180,8 +204,61 @@
   border:1px solid #EEEEEE;
   color:#DF1738;
 }
-#section>.products>.main>.product_list>ul>li>div>.operation>span>img{/* 奇数子元素 */
+#section>.products>.main>.product_list>ul>li>div>.operation>span>img{
   vertical-align:middle;
   padding-right: 5px;
 }
 
+#section>.products>.main>.change_page{
+  margin:30px 0px;
+  float:right;
+}
+  #section>.products>.main>.change_page>:nth-child(n){/* 所有子元素 */
+  float:left;
+  border:1px solid #CCCCCC;
+  margin:0 5px;
+  font-size:14px;
+  font-weight:500;
+  color:#666666;
+  border-radius:3px;
+}
+
+#section>.products>.main>.change_page>span{
+  width:36px;
+  height:36px;
+  text-align:center;
+  line-height: 36px;
+  cursor:pointer;
+}
+#section>.products>.main>.change_page>button{
+  width:60px;
+  height:38px;
+  outline:0;
+  background:#fee;
+}
+#section>.products>.main>.change_page>span.active{
+  background:#DF1738;
+  border:0;
+  color:#fff;
+}
+#section>.products>.main .btn[disabled]{
+  opacity:0.3;
+}
+#section>.products>.main>.change_page>span:not([class~="active"]):hover{/* 类名含有active的span*/
+  color:#DF1738;
+}
+#section>.products>.main .btn:not([disabled]):hover{
+  color:#DF1738;
+  cursor:pointer;
+}
+
+.noProduct{/* 未搜索到商品 */
+  text-align: center;
+  padding-top:40px;
+  padding-bottom:20px;
+  line-height: 2;
+}
+.noProduct a{
+  color:#DF1738;
+  margin-right:5px;
+}

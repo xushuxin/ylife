@@ -178,13 +178,11 @@ var vm4=new Vue({
   mounted(){
     //2F轮播
     (function(){
-      var el=document.querySelector("#section>.floor>.floor2>.box>.right>ul>li:first-child");
-      myCarousel(el,2,440,500,"linear");//元素，图片张数，图片宽度，轮播间隔时间，时间曲线
+      myCarousel({el:"#section>.floor>.floor2>.box>.right>ul>li:first-child",num:2,width:440});//元素，图片张数，图片宽度，轮播间隔时间，时间曲线
     })();
     //3F轮播
     (function(){
-      var el=document.querySelector("#section .floor3 .right .my_carousel");
-      myCarousel(el,2,396,500,"linear");
+      myCarousel({el:"#section .floor3 .right .my_carousel",num:2,width:396});
     })();
     
   }

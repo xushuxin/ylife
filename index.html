@@ -19,7 +19,7 @@
         </a>
       </div>
       <!-- 小圆点 -->
-      <ul class=car_index>
+      <ul class="car_index">
         <li v-for="(item,i) of carousel_list" :key="item.id" @click="changeimg" :data-id="i" :class="i==index_id?'active':''"></li>
       </ul>
     </div>
@@ -43,7 +43,7 @@
         <p class="another" @click="changeAnother"><span>换一批</span><span class="another_icon"></span></p>
       </h1>
       <ul class="rec_box">
-        <li class="hot_item" v-for="item of hot_list">
+        <li class="hot_item" v-for="item of hot_list" v-cloak>
           <a href="item.href"><img :src="item.img_url" alt=""> </a>
           <p><a href="">{{item.title}}</a></p>
           <p>￥<span>{{item.price}}</span></p>
@@ -152,7 +152,7 @@
           <div class="right">
             <ul class="clearfix common">
               <li class="my_carousel">
-                <ul class="img">
+                <ul class="img clearfix">
                   <li><a href=""><img src="http://127.0.0.1:80/images/index_2L2.jpg" alt=""></a></li>
                   <li><a href=""><img src="http://127.0.0.1:80/images/index_2L2-2.jpg" alt=""></a></li>
                 </ul>
@@ -359,12 +359,13 @@
   </section>
   <aside id="aside"></aside>
   <!--footer-->
-  <iframe src="footer.html" frameborder="0" scrolling="no" style="width:100%;height:410px; margin-top:10px"></iframe>
+  <footer id="footer" class="container"></footer>
 </body>
 <script src="myComponents/carousel.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/axios.min.js"></script>
 <script src="js/header.js"></script>
 <script src="js/index.js"></script>
+<script src="js/footer.js"></script>
 
 </html>

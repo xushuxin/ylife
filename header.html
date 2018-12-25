@@ -1,12 +1,12 @@
     <!--header1-->
     <div id="header1">
       <div class="container clearfix">
-        <ul class="fr" >
-          <li>您好，欢迎来到优生活商城 <span>|</span></li>
+        <ul class="fr" v-cloak>
+          <li>您好{{name}}，欢迎来到优生活商城 <span>|</span></li>
           <li>
-            <a href="user_login.html" class="font_gray1">[请登录]</a>
-            <a href="user_register.html" class="font_gray1">[免费注册]</a>
-            <span>|</span>
+            <a href="user_login.html" class="font_gray1" v-if="!isLogin">[请登录]</a>
+            <a href="user_register.html" class="font_gray1" v-if="!isLogin">[免费注册]</a>
+            <a href="index.html" class="font_gray1" @click="logout" v-else="!isLogin">退出</a><span>|</span>
           </li>
           <li>
             <div class="dropdown">
@@ -31,20 +31,21 @@
     <div id="header2" class="container">
         <a href="index.html"><img src="http://127.0.0.1:80/images/logo.jpg" alt="优生活商城"></a>
         <a href="#"><img src="http://127.0.0.1:80/images/kfrx.jpg" alt="客服热线"></a>
-        <input type="text" class="searchBox" placeholder="膳魔师">
+        <input type="text" class="searchBox" placeholder="膳魔师" v-focus v-model="kwords" @keyup.enter="search"><!-- v-focus自定义指令 v-model绑定输入框内容 keyup键抬起事件-->
         <div class="hot">
           <span>热门搜索：</span>
-          <a href="">大润窑</a>
-          <a href="">公牛</a> 
-          <a href="">锅</a> 
-          <a href="">新榜样</a> 
-          <a href="">加加</a> 
-          <a href="">百安思</a> 
-          <a href="">乐扣</a>
+          <a href="products.html?kwords=大润窑">大润窑</a>
+          <a href="products.html?kwords=大润窑">公牛</a> 
+          <a href="products.html?kwords=大润窑">锅</a> 
+          <a href="products.html?kwords=大润窑">新榜样</a> 
+          <a href="products.html?kwords=大润窑">加加</a> 
+          <a href="products.html?kwords=大润窑">百安思</a> 
+          <a href="products.html?kwords=大润窑">乐扣</a>
         </div>
-        <button class="icon_box">
+        <button class="icon_box" @click="search">
             <i class="search_icon"></i>
         </button>
+        <!-- 购物车 -->
         <div class="shopping_cart">
           <div class="drop_btn">
             <div>
@@ -88,9 +89,9 @@
                 <div class="fl">
                   <h1><a href="" v-for="item1 of item.title">{{item1}}</a></h1>
                   <div class="rec_list">
-                    <button class="rec_btn" v-for="item2 of item.index">
-                      <a class="font_white" href="">{{item2}}</a>
-                    </button>
+                    <a href="" v-for="item2 of item.index">
+                      <button class="rec_btn font_white">{{item2}}</button>
+                    </a>
                   </div>
                 </div>
                 <div class="recommend fr">
