@@ -14,13 +14,13 @@
     <div class="carousel">
       <!--轮播图主体-->
       <div class="car_img">
-        <a href="#" v-for="(item,i) of carousel_list" :key="item.id">
-          <img :src="item.src" alt="" :class="i==index_id?'active':''" >
+        <a href="#" v-for="(item,i) of carousel_list" :key="i" :class="i==index_id?'active':''">
+          <img :src="item.src" alt="" >
         </a>
       </div>
       <!-- 小圆点 -->
       <ul class="car_index">
-        <li v-for="(item,i) of carousel_list" :key="item.id" @click="changeimg" :data-id="i" :class="i==index_id?'active':''"></li>
+        <li v-for="(item,i) of carousel_list" :key="i" @mouseover="changeimg" :data-id="i" :class="i==index_id?'active':''"></li>
       </ul>
     </div>
     <!-- 今日推荐 -->
@@ -361,9 +361,9 @@
   <!--footer-->
   <footer id="footer" class="container"></footer>
 </body>
-<script src="myComponents/carousel.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/axios.min.js"></script>
+<script src="myComponents/carousel.js"></script>
 <script src="js/header.js"></script>
 <script src="js/index.js"></script>
 <script src="js/footer.js"></script>

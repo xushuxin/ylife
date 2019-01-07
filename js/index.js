@@ -1,8 +1,4 @@
 
-/* 页面加载后让下拉菜单在首页一直显示 */
-window.onload=function(){
-  document.querySelector("#nav>ul>li.drop_list .drop_menu").style.display="block";
-}
 
 //轮播图
 var vm1=new Vue({
@@ -23,32 +19,31 @@ var vm1=new Vue({
     },
     changeimg(e){
       this.index_id=e.target.dataset.id;//把前台点击事件获得的id赋值给vm实例对象的index_id
-      clearInterval(this.timer);//点击小圆点时，重新设置定时器
       this.carouselauto();//自动轮播
     },
     carouselauto(){//轮播图定时器
+      clearInterval(this.timer);
       this.timer=setInterval(()=>{
         this.index_id++;
-        if(this.index_id>4){
-          this.index_id=0;
-        } 
+        this.index_id=this.index_id%5;
       },3000);
     },
-  },  
+  }, 
   created(){
     this.getcarousel();
   },
   mounted(){
     //获得轮播图主体，鼠标进入清除，离开时重新添加
-    var car_img=document.getElementsByClassName("car_img")[0];
-    console.log(car_img);
-    car_img.onmouseenter=(e)=>{
-      clearInterval(this.timer);
-    }
-    car_img.onmouseleave=(e)=>{
+    this.$nextTick(function(){
+      var car_img=document.getElementsByClassName("car_img")[0];
+      car_img.onmouseenter=(e)=>{
+        clearInterval(this.timer);
+      }
+      car_img.onmouseleave=(e)=>{
+        this.carouselauto();
+      }
       this.carouselauto();
-    }
-    this.carouselauto();
+    })
   }
 })
 
@@ -84,7 +79,7 @@ var vm2=new Vue({
         }
         this.index--;
         var marginLeft=parseInt(getComputedStyle(ul).marginLeft);
-        ul.style.transition="all 0.5s linear";
+        ul.style.transition="margin-left 0.5s ease-out";
         this.marginLeft=marginLeft+280;
       }
     },
@@ -100,12 +95,12 @@ var vm2=new Vue({
         }
         this.index++;
         var marginLeft=parseInt(getComputedStyle(ul).marginLeft);
-        ul.style.transition="all 0.5s linear";
+        ul.style.transition="margin-left 0.5s ease-out";
         this.marginLeft=marginLeft-280;
       }
     },
     
-  },  
+  },
   created(){
     this.gettodayrec();
   },
@@ -169,7 +164,7 @@ var vm4=new Vue({
   },
   methods:{
     getFloorIMages(){
-      axios.get()
+      // axios.get()
     }
   },
   create(){
@@ -187,6 +182,7 @@ var vm4=new Vue({
     
   }
 })
+
 
 
 

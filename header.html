@@ -3,11 +3,11 @@
       <div class="container clearfix">
         <ul class="fr" v-cloak>
           <li>您好{{name}}，欢迎来到优生活商城 <span>|</span></li>
-          <li>
-            <a href="user_login.html" class="font_gray1" v-if="!isLogin">[请登录]</a>
-            <a href="user_register.html" class="font_gray1" v-if="!isLogin">[免费注册]</a>
-            <a href="index.html" class="font_gray1" @click="logout" v-else="!isLogin">退出</a><span>|</span>
+          <li v-if="!isLogin">
+            <a href="user_login.html" class="font_gray1">[请登录]</a>
+            <a href="user_register.html" class="font_gray1">[免费注册]</a><span>|</span>
           </li>
+          <li v-else><a href="javascript:;" class="font_gray1" @click="logout" >退出</a><span>|</span></li>
           <li>
             <div class="dropdown">
               <a href="#" class="font_gray1">会员中心<i class="rotate"></i></a>
@@ -57,12 +57,18 @@
             <div class="count">0</div>
           </div>
           <div class="drop_list">
-            <div class="shopping_list">
-              <div class="shopping_item">购物车中还没有商品，再去逛逛吧！</div>
-              <!-- <div class="shopping_item">未写任何样式
-                <img src="http://127.0.0.1:80/images/index_1L2.jpg" alt="">
-
-              </div> -->
+            <div class="no_shopping_list" v-if="!isAdd">购物车中还没有商品，再去逛逛吧！</div>
+            <div class="shopping_list" v-else>
+              <div class="shopping_item" v-for="item of cartList">
+                <a :href="`details.html?id=${item.product_id}`">
+                  <img src="http://127.0.0.1:80/images/index_1L2.jpg" alt="">
+                  <span>大润窑10头汝窑茶具</span>
+                </a> 
+                <div class="PD">
+                  <span>85.00</span>
+                  <span>删除</span>
+                </div>
+              </div>
             </div>
             <div class="balance">
               <span>共 0 件</span><span>￥99.00</span><span><a href="javascript:;" class="font_white font_bold">结算</a></span>

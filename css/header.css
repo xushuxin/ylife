@@ -26,7 +26,7 @@
   border-color:#C7C7C9 transparent transparent transparent;
   background:url("http://127.0.0.1:80/images/icons-1.png") no-repeat 0px -40px;
   margin-left:5px;
-  transition:all linear 0.5s;
+  transition:transform linear 0.5s;
 }
 
 #header1 a:hover{
@@ -183,7 +183,7 @@
   display:block;
 }
 /* 不设高度，由内容撑开 */
-#header2>.shopping_cart>.drop_list>.shopping_list{
+#header2>.shopping_cart>.drop_list>.shopping_list,.no_shopping_list{
   width:100%;
   border-width:1px 1px 0 1px;
   border-style:solid;
@@ -191,12 +191,41 @@
   background:#ffffff;
 }
 /* 加入购物车的商品样式 */
+.no_shopping_list{
+  height:60px;
+  text-align:center;
+  line-height:60px;
+}
 #header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item{
   width:100%;
-  height:60px;
   padding:10px;
-  text-align:center;
-  line-height:40px;
+  display: flex;
+  flex-direction:row;
+  line-height:normal;
+  justify-content:space-between;
+}
+
+#header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item img{
+ width:50px;
+ height:50px;
+ border:1px solid #C9C8C6;
+ vertical-align: top;
+ margin-right:5px;
+}
+#header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item>a>span:hover{
+  color:#D40000;
+}
+#header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item .PD{
+  display:flex;
+  flex-direction:column;
+}
+#header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item .PD :nth-child(1){
+  color:#D40000;
+  font-weight:bold;
+}
+#header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item .PD :nth-child(2){
+  margin-top:5px;
+  cursor:pointer;
 }
 /* 结算 */
 #header2>.shopping_cart>.drop_list>.balance{

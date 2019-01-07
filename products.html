@@ -17,7 +17,7 @@
         <span>"<span>大润窑</span>"</span>
       </div>
     </div>
-    <div class="sift container"><!-- 筛选 -->
+    <div class="sift container" v-cloak><!-- 筛选 -->
       <ul>
         <li>
           <span class="title">品牌:</span>
@@ -86,7 +86,7 @@
         <p class="font_bold font_14">浏览过的商品</p>
         <div class="visited"></div>
       </div>
-      <div class="main fl">
+      <div class="main fl" v-cloak>
         <div class="filter">
           <div class="left">
             <span class="title">排序:</span>
@@ -101,7 +101,7 @@
             <input type="text" placeholder="￥">
             <button class="font_white">确定</button>
           </div>
-          <div class="right" v-cloak>
+          <div class="right">
             <span>共{{count}}个商品</span>
             <span><span>{{pno}}</span>/2</span>
             <span class="btn" :disabled="pno==1||count==0?true:false"  @click="prevPage">上一页</span>
@@ -109,7 +109,7 @@
           </div>
         </div>
         <div class="product_list">
-          <ul class="clearfix" v-cloak>
+          <ul class="clearfix">
             <li v-for="(item,i) of list" :key="i">
               <div>
                 <div class="img">

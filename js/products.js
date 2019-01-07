@@ -58,13 +58,13 @@ new Vue({
       pno:1,  //当前页码
       pageSize:16,//每页商品条数
       pageCount:0,//总页数
-      count:0,//总商品条数
+      count:null,//总商品条数
       string:"",//地址栏查询字符串
       kwords:""//关键词
     }
   },
   methods:{
-    getProductlist(no=1){//加载页面时
+    getProductlist(no=1){//加载页面时,默认页码1
       if(this.string.indexOf("kwords=")!=-1){
         this.pno=no;
         var kwords=this.kwords;
@@ -72,6 +72,7 @@ new Vue({
           this.list=res.data.products;
           this.pageCount=res.data.pageCount;
           this.count=res.data.count;
+          this.pno=res.data.pno;
         })
       }  
     },
@@ -119,9 +120,8 @@ new Vue({
   },
   created(){
     this.string=location.search;
-    if(this.string!=-1){
+    if(this.string.indexOf("kwords=")!=-1){
       this.kwords=decodeURIComponent(this.string.split("=")[1]);//decodeURIComponent解码数字、字母汉字,decodeURI只解码空格
-      console.log(this.kwords);
     }
     this.getProductlist();
   },

@@ -14,24 +14,21 @@
 <section id="section">
     <nav class="nav">
       <div class="container clearfix">
-        <span class="font_14 font_bold"><a href="">餐饮厨具</a></span>
+        <span class="font_14 font_bold"><a href="">{{product.cname}}</a></span>
         <span>></span>
-        <span><a href="">茶具饮具</a></span>
+        <span><a href="">{{product.secondCname}}</a></span>
         <span>></span>
-        <span><a href="">茶具套装</a></span>
+        <span><a href="">{{product.thirdCname}}</a></span>
         <span>></span>
-        <span>大润窑10头汝窑茶具</span>
+        <span>{{product.title}}</span>
       </div>     
     </nav>
-    <div class="goods_intro container font_14">
+    <div class="goods_intro container font_14 clearfix">
       <div class="left fl">
         <ul class="mImg">
-          <li><a href=""><img src="http://127.0.0.1:80/images/product/product03md1.jpg" alt=""></a></li>
-          <li><a href=""><img src="http://127.0.0.1:80/images/product/product03md2.jpg" alt=""></a></li>
-          <li><a href=""><img src="http://127.0.0.1:80/images/product/product03md3.jpg" alt=""></a></li>
-          <li><a href=""><img src="http://127.0.0.1:80/images/product/product03md4.jpg" alt=""></a></li>
-          <li><a href=""><img src="http://127.0.0.1:80/images/product/product03md5.jpg" alt=""></a></li>
-          <li><a href=""><img src="http://127.0.0.1:80/images/product/product03md6.jpg" alt=""></a></li>
+          <li v-for="(pic,i) of pics" :key="i" :class="i==index?'active':''">
+            <a href=""><img :src="pic.md" alt=""></a>
+          </li>
         </ul>
         <div class="mask"></div><!-- 小方块 -->
         <div class="super-mask"></div><!--宽高与md图片一样大的div，遮障层-->
@@ -40,12 +37,9 @@
           <span class="arrow-left btn btn-lt fl"></span>
           <div class="fixed_box fl">
             <ul class="img fl">
-              <li><img src="http://127.0.0.1:80/images/product/product03sm1.jpg" alt=""></li>
-              <li><img src="http://127.0.0.1:80/images/product/product03sm2.jpg" alt=""></li>
-              <li><img src="http://127.0.0.1:80/images/product/product03sm3.jpg" alt=""></li>
-              <li><img src="http://127.0.0.1:80/images/product/product03sm4.jpg" alt=""></li>
-              <li><img src="http://127.0.0.1:80/images/product/product03sm5.jpg" alt=""></li>
-              <li><img src="http://127.0.0.1:80/images/product/product03sm6.jpg" alt=""></li>
+              <li v-for="(pic,i) of pics" :key="i" >
+                <img :class="i==index?'active':''" :src="pic.sm" alt="" @mouseover="changeStyle" :data-id="i">
+              </li>
             </ul> 
           </div>
           <span class="arrow-right btn btn-rt fl"></span>
@@ -58,77 +52,252 @@
             <a href=""><img src="http://127.0.0.1:80/images/weixin.png" alt=""></a> 
             <a href=""><img src="http://127.0.0.1:80/images/friendCircle.png" alt=""></a> 
           </div>
-          <div class="atten fr" @click="changeRed" :style="bgStyle">关注该商品</div>
+          <div class="atten fr" @click="toggleImg" :class="attenClass">关注该商品</div>
         </div>
       </div>
       <div class="right fl">
-        <div class="title font_16 font_bold">大润窑10头汝窑茶具</div>
+        <div class="title font_16 font_bold">{{product.title}}</div>
         <div class="pd_info">
-          <div class="bg_color">
+          <div class="price_promote">
             <div class="price clearfix">
-              <dt>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</dt>
+              <dt>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格:</dt>
               <dd>
                 <span>￥</span>
-                <span>85</span>
+                <span class="font_24">{{product.price.toFixed(2)}}</span>
               </dd>  
             </div>
-            <div class="promote_message clearfix">
-              <dt>促销信息：</dt>
-              <dd>无</dd>
+            <div class="promote clearfix">
+              <dt>促销信息:</dt>
+              <dd>{{product.PromoteMessage}}</dd>
             </div>
           </div>
           <div class="distribute clearfix">
-            <dt>配&nbsp;&nbsp;送&nbsp;&nbsp;至：</dt>
+            <dt>配&nbsp;&nbsp;送&nbsp;&nbsp;至:</dt>
             <dd class="addr dropdown"> 
-              <div class="addr dropbtn">北京北京市西城区</div>
-              <div class="dropdown-content">
-                <div class="province">北京</div>
-                <div class="city">北京市</div>
-                <div class="distict">西城区</div>
+              <div class="dropbtn">北京北京市西城区</div>
+              <div class="dropdown-content clearfix">
+                <div class="province fl">北京</div>
+                <div class="city fl">北京市</div>
+                <div class="distict fl">西城区</div>
               </div>
             </dd>
-            <dd>有货</dd>
+            <dd class="font_bold font_gray1">{{product.isCount | countConvert}}</dd>
           </div>
           <div class="service clearfix">
-            <dt>服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：</dt> 
-            <dd>由“优生活商城”直接销售和发货，并提供售后服务</dd>
+            <dt>服&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务:</dt> 
+            <dd>由“{{product.store}}”直接销售和发货，并提供售后服务</dd>
           </div>
           <div class="prompt clearfix">
-              <dt>温馨提示：</dd>
+              <dt>温馨提示:</dd>
               <dd>收货时请检查好商品质量，如有问题，请联系客服400-8200-9900</dt>
           </div>
         </div>
-        <div class="goods_info">
-          <div class="clearfix">
-            <dt>个数：</dt>
-            <dd>10件</dd>
+        <div class="buy_info">
+          <div class="goods_select">
+            <div class="clearfix" >
+              <dt>{{product.spec_title1}}:</dt>
+              <dd>
+                <div class="active" v-for="(spec1,i) of specs1" :key="i">{{spec1.specs}}</div>
+              </dd>
+            </div>
+            <div class="clearfix" >
+              <dt>{{product.spec_title2}}:</dt>
+              <dd >
+                <div class="active" v-for="(spec2,j) of specs2" :key="j">{{spec2.specs}}</div>
+              </dd>
+            </div>
           </div>
-          <div class="clearfix">
-            <dt>茶餐材质：</dt>
-            <dd>汝窑</dd>
-          </div>
-          <div class="clearfix">
-            <dt>购买数量：</dt>
-            <dd>
-              <button>-</button>
-              <span>1</span>
-              <button>+</button>
+          <div class="clearfix buy_count">
+            <dt>购买数量:</dt>
+            <dd class="font_16 font_bold">
+              <span @click="reduce" onselectstart="return false;">-</span>
+              <input type="text" v-model="count" maxlength="2">
+              <span @click="increment" onselectstart="return false;">+</span>
             </dd>
           </div>
           <div class="selected clearfix">
-            <dt>已&nbsp;&nbsp;选&nbsp;&nbsp;择：</dt>
-            <dd>"10件","汝窑"</dd>
+            <dt>已&nbsp;&nbsp;选&nbsp;&nbsp;择:</dt>
+            <dd class="font_bold">
+              <span v-for="(spec1,i) of specs1" :key="i">
+                "{{spec1.specs}}"
+              </span>
+            </dd>
+            <dd class="font_bold">
+              <span v-for="(spec2,j) of specs2" :key="j">
+                <span v-show="j>=0">,</span>
+                "{{spec2.specs}}"
+              </span>
+            </dd>
           </div>
-        </div>
-        <div class="buy_cart clearfix">
-          <button class="fl">立即购买</button>
-          <button class="fl">加入购物车</button>
+          <div class="buy_cart clearfix">
+            <button class="fl font_16 font_bold buy">立即购买</button>
+            <button class="fl font_16 font_bold cart" data-toggle="fixed" @click="addCart" data-pid="">加入购物车</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="goods_params_list">
-      <div class="left"></div>
-      <div class="right"></div>
+    <div class="goods_params_list container clearfix">
+      <div class="side fl">
+        <div class="relClass">
+          <div class="title">相关分类</div>
+          <ul>
+            <li><a href="">茶具套装</a></li>
+            <li><a href="">保温杯/壶</a></li>
+            <li><a href="">水杯</a></li>
+            <li><a href="">陶瓷杯</a></li>
+            <li><a href="">玻璃杯</a></li>
+            <li><a href="">整套茶具</a></li>
+            <li><a href="">单套茶具</a></li>
+            <li><a href="">茶盘</a></li>
+            <li><a href="">膳魔师</a></li>
+            <li><a href="">百安思</a></li>
+            <li><a href="">啤酒杯</a></li>
+            <li><a href="">焖烧罐</a></li>
+          </ul>
+        </div>
+        <div class="relBrand">
+          <div class="title">相关品牌</div>
+          <ul>
+            <li><a href="">大润窑</a></li>
+          </ul>
+        </div>
+        <div class="fBuy">
+          <div class="title">浏览该商品的用户最终购买</div>
+          <ul>
+            <li>
+              <a href=""><img src="http://127.0.0.1:80/images/index_4L2.jpg" alt="大润窑12头青花茶具" title="大润窑12头青花茶具"></a> 
+              <p class="goods_name"><a href="">大润窑12头青花茶具</a></p>
+              <p class="price font_14 font_bold">￥75.00</p>
+            </li>
+            <li>
+              <a href=""><img src="http://127.0.0.1:80/images/index_4L8.jpg" alt="大润窑10头汝窑茶具" title="大润窑10头汝窑茶具"></a> 
+              <p class="goods_name"><a href="">大润窑10头汝窑茶具</a></p>
+              <p class="price font_14 font_bold">￥85.00</p>
+            </li>
+            <li>
+              <a href=""><img src="http://127.0.0.1:80/images/details/1472007824999.jpg" alt="大润窑7头青春茶具" title="大润窑7头青春茶具"></a>
+              <p class="goods_name"><a href="">大润窑7头青春茶具</a></p>
+              <p class="price font_14 font_bold">￥20.00</p>
+            </li>
+            <li>
+              <a href=""><img src="http://127.0.0.1:80/images/details/1507882204910.jpg" alt="【2018】艾仕达多功能养身壶ZCW-YS01 1.8升" title="【2018】艾仕达多功能养身壶ZCW-YS01 1.8升"></a> 
+              <p class="goods_name"><a href="">【2018】艾仕达多功能养身壶ZCW-YS01 1.8升</a></p>
+              <p class="price font_14 font_bold">￥85.00</p>
+            </li>
+          </ul>
+        </div>
+        <div class="hotOrder">
+          <div class="title">热销排行榜</div>
+            <div class="nav clear_over">
+              <div class="clearfix">
+                <div class="fl active">同价位</div>
+                <div class="fl">同品牌</div>
+                <div class="fl">同价位</div>
+              </div>
+            </div>
+          <ul class="clearfix content">
+            <li class="fl">
+              <span>1</span>
+              <a href=""><img src="http://127.0.0.1:80/images/details/1459567770331.jpg" alt="OLYMPIA 拉杆箱 PET-1000 29寸" title="OLYMPIA 拉杆箱 PET-1000 29寸"></a> 
+              <div class="fr">
+                <p><a href="">OLYMPIA 拉杆箱 PET-1000 29寸</a></p>
+                <p>¥ 1978.00</p>
+              </div>
+            </li>
+            <li class="fl">
+              <span>2</span>
+              <a href=""><img src="http://127.0.0.1:80/images/details/1488959982805.jpg" alt="膳魔师不锈钢保温茶杯带茶隔JMZ-480(浅银红)" title="膳魔师不锈钢保温茶杯带茶隔JMZ-480(浅银红)"></a> 
+              <div class="fr">
+                <p><a href="">膳魔师不锈钢保温茶杯带茶隔JMZ-480(浅银红)</a></p>
+                <p>¥ 336.00</p>
+              </div>
+            </li>
+            <li class="fl">
+              <span>3</span>
+              <a href=""><img src="http://127.0.0.1:80/images/details/1489210848541.jpg" alt="伯尔尼斯BERNESE尚爵汤蒸锅BENS-170" title="伯尔尼斯BERNESE尚爵汤蒸锅BENS-170"></a> 
+              <div class="fr">
+                <p><a href="">伯尔尼斯BERNESE尚爵汤蒸锅BENS-170</a></p>
+                <p>¥ 138.00</p>
+              </div>
+            </li>
+            <li class="fl">
+              <span>4</span>
+              <a href=""><img src="http://127.0.0.1:80/images/details/1514959945971.jpg" alt="乐扣乐扣麦饭石炒锅(1个)" title="乐扣乐扣麦饭石炒锅(1个)"></a> 
+              <div class="fr">
+                <p><a href="">乐扣乐扣麦饭石炒锅(1个)</a></p>
+                <p>¥ 299.00</p>
+              </div>
+            </li>
+            <li class="fl">
+              <span>5</span>
+              <a href=""><img src="http://127.0.0.1:80/images/details/1490163137427.jpg" alt="乐扣乐扣收纳箱" title="乐扣乐扣收纳箱"></a> 
+              <div class="fr">
+                <p><a href="">乐扣乐扣收纳箱</a></p>
+                <p class="price">¥ 79.00</p>
+              </div>
+            </li>
+            <li class="fl">
+              <span>6</span>
+              <a href=""><img src="http://127.0.0.1:80/images/details/1488960209406.jpg" alt="膳魔师儿童吸管杯FEC-280(蓝色)" title="膳魔师儿童吸管杯FEC-280(蓝色)"></a> 
+              <div class="fr">
+                <p><a href="">膳魔师儿童吸管杯FEC-280(蓝色)</a></p>
+                <p>¥ 328.00</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="main fl">
+        <div class="nav" id="detail" data-toggle="fixed">
+          <div class="clearfix">
+            <div class="intro_detail fl active" @click="tap" data-id="content1">商品介绍</div>
+            <div class="params_detail fl"  @click="tap" data-id="content2">规格参数</div>
+            <div class="comments fl" @click="tap" data-id="content3">商品评价</div>
+            <div class="question fl" @click="tap" data-id="content4">商品咨询</div>
+          </div>
+        </div>
+        <div id="content1" class="clearfix">
+          <div class="mainContent fl">
+            <ul class="clearfix message">
+              <li class="fl">商品名称：大润窑10头汝窑茶具</li>
+              <li class="fl">商品编号：201510201609141</li>
+              <li class="fl">店铺： 优生活商城</li>
+              <li class="fl">时间：2018-06-27 21:13:39</li>
+              <li class="fl">价格 ：0-299</li>
+              <li class="fl">材质 ：汝窑</li>
+              <li class="fl">选购热点 ：热卖款</li>
+            </ul>
+            <div class="goods_dimg">
+              <img src="http://127.0.0.1/images/details/1479197339131.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197331399.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197325358.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197318543.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197311212.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197307828.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197300574.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197297125.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197293060.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197286310.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197282862.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197280118.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197276755.jpg" alt="">
+              <img src="http://127.0.0.1/images/details/1479197272918.jpg" alt="">
+            </div>
+          </div>
+          <div class="aside fr">
+            <ul>
+              <li><a href="javascript:;" @click="skip" data-id="detail">商品详情</a></li>
+              <li><a href="javascript:;" @click="skip" data-id="ensure">售后保障</a></li>
+              <li><a href="javascript:;" @click="skip" data-id="declare">责任声明</a></li>
+            </ul>
+          </div>
+        </div>
+        <div id="content2">规格参数</div>
+        <div id="content3">商品评价</div>
+        <div id="content4">商品咨询</div>
+      </div>
+      <div id="ensure"></div>
+      <div id="declare"></div>
     </div>
 </section>
 <footer id="footer" class="container"></footer>
@@ -136,7 +305,7 @@
 <script src="js/vue.js"></script>
 <script src="js/header.js"></script>
 <script src="js/footer.js"></script>
-<script src="myComponents/carousel.js"></script>
 <script src="js/details.js"></script>
+<script src="myComponents/carousel.js"></script>
 </body>
 </html>

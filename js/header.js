@@ -21,10 +21,12 @@
           {id:5,path:"http://127.0.0.1:80/images/category-pic-6.jpg", txt:"居家收纳",title:["居家生活","精品家纺"],index:["衣架","居家小物件","收纳盒"],rec_brand:[{title:"好太太",img:"http://127.0.0.1:80/images/haotaitai.jpg"}]},
           {id:6,path:"http://127.0.0.1:80/images/category-pic-7.jpg", txt:"功能箱包",title:["居家生活"],index:["拉杆箱","双肩包"],rec_brand:[{title:"OLYMPIA",img:"http://127.0.0.1:80/images/olympia.jpg"}]}
         ],
-        name:"",
+        cartList:[],
+        name:undefined,
         isLogin:false,
         kwords:"",
-        string:""//用于保存地址栏的查询字符串?kwords=...
+        string:"",//用于保存地址栏的查询字符串?kwords=...
+        isAdd:false
       } 
     },
     methods:{
@@ -32,23 +34,57 @@
         //获取sessionStorage用户名
         this.name=sessionStorage.getItem("name");
         //如果有用户名
-        if(this.name) this.isLogin=true;
+        if(this.name!=undefined) {
+          sessionStorage.setItem("isLogin",true);
+          this.isLogin=true;
+        }
       },
       logout(){
-        if(this.name){
-          sessionStorage.removeItem("name");
-          this.isLogin=false;
+        if(this.name!=undefined){
+          axios.defaults.withCredentials = true;
+          axios.get("http://127.0.0.1:80/user/logout").then(res=>{
+            alert(res.data.msg);
+            sessionStorage.removeItem("name");
+            this.name=undefined;
+            sessionStorage.removeItem("isLogin");
+            sessionStorage.removeItem("uid");
+            this.isLogin=false;
+          });
         }
       },
       search(){
         if(this.kwords.trim()!==""){//如果关键词不为空
           location.href="products.html?kwords="+this.kwords;
         }
+      },
+      getCartItem(){
+        var uid=sessionStorage.uid; 
+        if(uid!=undefined){
+          axios.defaults.withCredentials=true;
+          axios.get("http://127.0.0.1:80/shopcart/getCartItem?uid="+uid).then(res=>{
+            this.cartList=res.data.list;
+            if(this.cartList.length>0) this.isAdd=true; 
+          })
+        }
+      }
+    },
+    created(){
+      if(this.isLogin){
+        this.getCartItem();
       }
     },
     mounted(){
       this.loginStatus();
       this.string=location.search;
+      if(location.href.indexOf("index.html")!=-1){//地址栏如果是index.html
+        document.querySelector("#nav>ul>li.drop_list .drop_menu").style.display="block";
+      }
+    },
+    updated() {
+      this.isAdd=sessionStorage.getItem("isAdd");
+      if(this.isAdd){
+        this.getCartItem();
+      }
     },
     watch:{
       string(val){//监听data中的string的值得变化，val既是值

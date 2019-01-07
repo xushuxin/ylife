@@ -1,12 +1,13 @@
 body{
   background:#F5F5F5;
 }
-/* 导航 */
-#section>.nav,#section>.goods_intro{
+#section .nav,#section>.goods_intro,#section>.goods_params_list>.side>div,#section>.goods_params_list .mainContent{
   background:#fff;
 }
+/* 导航 */
+
 #section>.nav{
- border-bottom:1px solid #666666;
+ border-bottom:1px solid #D1CFCF;
  padding:5px 0;
 }
 #section>.nav>div{
@@ -22,10 +23,8 @@ body{
 }
 /* 商品介绍 */
 #section>.goods_intro{
-  height:550px;
-  border:1px solid #666666;
   margin-top:5px;
-  padding-top:20px;
+  padding:20px 0px;
 }
 #section>.goods_intro>.left{
   width:350px;
@@ -36,17 +35,20 @@ body{
   width:350px;
   height:350px;
   margin:0 auto;
-  margin-bottom:10px;
+  margin-bottom:30px;
 }
 #section>.goods_intro>.left>ul>li{
   position:absolute;
   height:350px;
+  transition:all 0.5s linear;
 }
 #section>.goods_intro>.left>.mImg img{
   width:350px;
   height:350px;
 }
-
+#section>.goods_intro>.left>.mImg li.active{
+  z-index:10;
+}
 #section>.goods_intro>.left .sImg .fixed_box{
   width:300px;
   overflow:hidden;
@@ -57,14 +59,17 @@ body{
 }
 #section>.goods_intro>.left .sImg ul>li{
   float:left;
-  height:50px;
-  border:1px solid #faa;
+  height:52px;
   margin-right:10px;
   cursor:pointer;
 }
 #section>.goods_intro>.left .sImg img{
   width:50px;
   height:50px;
+  border:1px solid #fff;
+}
+#section>.goods_intro>.left .sImg img.active{
+  border:1px solid #DF1738;
 }
 #section>.goods_intro>.left .btn{
   display:block;
@@ -77,7 +82,7 @@ body{
   background-position:right -57px;
 }
 #section>.goods_intro>.left>.share-atten{
-  margin-top:20px;
+  margin-top:30px;
 }
 #section>.goods_intro>.left .share>:nth-child(n){
   float:left;
@@ -95,6 +100,10 @@ body{
   background-size:24px 24px;
   cursor:pointer;
 }
+#section>.goods_intro>.left .attended{
+  background-Image:url("http://127.0.0.1:80/images/sd-love.png");
+  background-size:22px 22px;
+}
 #section>.goods_intro>.left .atten:hover{
   color:#CC3333;
 }
@@ -107,14 +116,308 @@ body{
 }
 #section>.goods_intro .right dt,#section>.goods_intro .right dd{
   float:left;
+  margin-left:10px;
 }
 #section>.goods_intro .right dt{
   width:70px;
   text-align:right;
 }
 #section>.goods_intro>.right>.pd_info{
-  margin:10px 0; 
+  padding-bottom:5px; 
+  border-bottom:1px solid#EEEEEE;
 }
 #section>.goods_intro>.right>.pd_info>div{
   margin:10px 0;
+}
+#section>.goods_intro>.right>.pd_info>.price_promote{
+  background:#F5F5F5;
+  padding:15px 0;
+}
+#section>.goods_intro>.right>.pd_info .price{
+  padding-bottom:10px;
+}
+#section>.goods_intro>.right>.pd_info .price>:nth-child(n){
+  height:31px;
+  line-height:31px;
+}
+#section>.goods_intro>.right>.pd_info .price span{
+  color:#DF1738;
+}
+#section>.goods_intro>.right>.pd_info .promote dd{
+  background:#EA5870;
+  width:20px;
+  height:20px;
+  line-height:20px;
+  text-align:center;
+  color:#fff;
+}
+
+#section .dropbtn{
+  border:1px solid #DDDDDD;
+  padding:0 5px;
+}
+#section .buy_info{
+  margin-top:20px;
+}
+#section .buy_count>dd>span,#section .goods_select dd>div,button,.goods_params_list .main .nav>div>div{
+  cursor:pointer;
+}
+#section .buy_info>div,#section .buy_info>.goods_select>:first-child{
+  margin-bottom:20px;
+}
+#section>.goods_intro .goods_select dd{
+  width:460px;
+}
+#section>.goods_intro .goods_select dd>div{
+  border:1px solid #DDDDDD;
+  padding:2px 7px;
+  margin-bottom:5px;
+  margin-right:10px;
+  float:left;
+}
+#section>.goods_intro .goods_select dd>div:hover{
+  color:#DF1738;
+}
+#section .goods_select dd>div.active{
+  border:2px solid #DF1738;
+  height:22px;
+  line-height: 22px;
+  background:url("http://127.0.0.1:80/images/selected_icon.png")102% 100% no-repeat;
+}
+#section .goods_select dt,#section .goods_select dd>div{
+  height:24px;
+  line-height: 24px;
+}
+
+#section .buy_count span{
+  width:40px;
+  font-size:22px;
+  font-weight:bold;
+  color:#666666;
+  border:1px solid #DDDDDD;
+}
+#section .buy_count>dd>input{
+  border:1px solid #DDDDDD;
+  width: 60px;
+}
+#section .buy_count>:nth-child(n){
+  height:26px;
+  line-height: 26px;
+}
+#section .buy_count>dd>:nth-child(n){
+  box-sizing:content-box;
+  float:left;
+  height:24px;
+  line-height: 24px;
+}
+
+#section .buy_count>dd>:nth-child(n){
+  margin-right:5px;
+  text-align: center;
+}
+#section .buy_info .buy_cart{
+  margin-left:90px;
+  margin-bottom:0;
+}
+#section .buy_info .buy_cart>:nth-child(n){
+  width:140px;
+  height:40px;
+  border-radius:5px;
+  outline:0;
+}
+#section .buy_info .buy_cart>.buy{
+  color:#DF1738;
+  background:#FCDDE2;
+  border:1px solid #F58B9D;
+  margin-right:20px;
+}
+#section .buy_info .buy_cart>.cart{
+  color:#ffffff;
+  background:#DF1738;
+  border:1px solid #F58B9D;
+}
+.goods_params_list{
+  margin-top:10px;
+}
+.goods_params_list .side{
+  width:200px;
+  margin-right:10px;
+}
+.goods_params_list .main{
+  width:990px;
+}
+.goods_params_list a:hover{
+  color:#DF1738;
+}
+.goods_params_list .side>div{
+  margin-bottom:10px;
+}
+.goods_params_list .side .title{
+  padding-left:10px;
+  font-size:14px;
+  font-weight:bold;
+} 
+
+.goods_params_list .side .title{
+  line-height: 39px;
+  height:39px;
+  border-bottom:1px solid #EEEEEE;
+} 
+.goods_params_list .side>.relClass>ul,.goods_params_list .side>.relBrand>ul{
+  padding:15px 0px 5px 15px;
+} 
+.goods_params_list .side>div>ul:after{
+  content:"";
+  display:block;
+  overflow: hidden;
+  clear: both;
+} 
+.goods_params_list .side>.relClass>ul>li,.goods_params_list .side>.relBrand>ul>li{
+  float:left;
+  margin-right:40px;
+  margin-bottom:10px;
+  min-width:48px;
+} 
+
+.goods_params_list .side .fBuy  li{
+  text-align:center;
+  border-bottom:1px solid #EEEEEE;
+  padding:10px;
+} 
+.goods_params_list .side .fBuy  img{
+  width:120px;
+  height:120px;
+} 
+.goods_params_list .side .fBuy  .price{
+  color:#DF1738;
+} 
+
+.goods_params_list .side .hotOrder .nav{
+  height:39px;
+  border-bottom:1px solid #EEEEEE;
+} 
+.goods_params_list .side .hotOrder .nav>div{
+  width:160px;
+  margin:0 auto;
+  margin-top:14px;
+} 
+.goods_params_list .side .hotOrder .nav>div>div{
+  border:1px solid #EEEEEE;
+  border-bottom:0;
+  width:48px;
+  text-align:center;
+  background:#FAFAFA;
+  height: 24px;
+  line-height:24px;
+} 
+.goods_params_list .side .hotOrder .nav>div>div.active{
+  height:25px;
+  margin-bottom:-1px;
+  border-bottom:none;
+  background:#ffffff;
+  font-weight:bold;
+  color:#DF1738;
+} 
+.goods_params_list .side .hotOrder .nav>div>div:not(:nth-child(1)){
+  margin-left:5px;
+} 
+
+.goods_params_list .side .hotOrder .content{
+  padding:10px 10px 0px 10px;
+}
+.goods_params_list .side .hotOrder .content img{
+  width:50px;
+  height:50px;
+}
+.goods_params_list .side .hotOrder .content li>div>p:nth-child(2){
+  color:#DF1738;
+  font-weight:bold;
+  font-size:16px;
+}
+.goods_params_list .side .hotOrder .content li>div{
+  width:100px;
+  margin-left:10px;
+} 
+.goods_params_list .side .hotOrder .content li{
+  border-bottom: 1px solid #eeeeee;
+  padding:10px 0;
+} 
+.goods_params_list .side .hotOrder .content li>span{
+  display:inline-block;
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  background:#DF1738;
+  color:#ffffff;
+  text-align:center;
+  line-height:15px;
+  vertical-align:top;
+} 
+.goods_params_list .main .nav{
+  border-bottom:1px solid #EEEEEE;
+  height:39px;
+} 
+.goods_params_list .main .nav>div>div{
+  width:120px;
+  height:39px;
+  line-height:40px;
+  text-align:center;
+  font-size: 14px;
+} 
+.goods_params_list .main .nav>div>div.active{
+  width:116px;
+  height:38px;
+  font-weight:bold;
+  color:#DF1738;
+  border:2px solid #DF1738;
+  background:#ffffff;
+  border-bottom:0;
+  margin-bottom:-1px;
+} 
+.goods_params_list .mainContent{
+  width:780px;
+  padding:30px;
+}
+.goods_params_list .main .aside{
+  width:150px;
+  font-size:14px;
+}
+.goods_params_list .mainContent ul.message{
+  border-bottom:1px solid #EEEEEE;
+  padding-bottom:20px;
+  margin-bottom:20px;
+}
+.goods_params_list .mainContent li{
+  width:250px;
+  margin:10px 0px 10px 10px;
+}
+.goods_params_list .goods_dimg img{
+  display:block;
+}
+
+.goods_params_list .main .aside ul{
+  width:86px;
+  margin:0 auto;
+  margin-top:20px;
+}
+.goods_params_list .main .aside li{
+  margin-bottom:10px;
+  padding-left:30px;
+  background:url("http://127.0.0.1/images/details/g-quan.png") no-repeat left center;
+}
+.goods_params_list .main .aside li:hover{
+  background-Image:url("http://127.0.0.1/images/details/r-quan.png");
+}
+
+.divFixed{
+  position:fixed;
+  border:0 !important;
+  width:840px;
+  top:0;
+}
+.btnFixed{
+  position:fixed;
+  top:0;
+  border-radius:0 !important;
+  z-index:10;
 }

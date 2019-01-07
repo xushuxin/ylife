@@ -26,33 +26,28 @@ $(function(){
     var reg=/^\w{6,20}$/;
     //如果用户名符合要求并且密码不为空时发送异步请求
     if(reg.test(uname)&&upwd!=""){
-      $.ajax({
-        url:"http://127.0.0.1:80/user/login",
-        type:"get",
-        data:{uname,upwd},
-        dataType:"json",
-        success:function(res){
-          if(res.code=="200"){
-            msg1.hide();
-            msg2.hide();
-            alert("登录成功");
-            var user_name=res.user_name;
-            if(user_name){//如果用户姓名不为空
-              sessionStorage.setItem("name",user_name);
-            }else{
-              sessionStorage.setItem("name",uname);
-            }
-            location.href="index.html";
-          }else{
-            msg1.hide();
-            msg2.show()
-                .html("密码和账户不匹配，请重新输入");
+      axios.defaults.withCredentials=true;
+      axios.post("http://127.0.0.1:80/user/login","uname="+uname+"&upwd="+upwd).then(res=>{
+        console.log(res);
+        if(res.data.code=="200"){
+          msg1.hide();
+          msg2.hide();
+          alert(res.data.msg);
+          var user_name=res.data.user_name;
+          var uid=res.data.uid;
+          if(user_name){//如果用户姓名不为空，保存用户姓名
+            sessionStorage.setItem("name",user_name);
+          }else{//否则保存用户名
+            sessionStorage.setItem("name",uname);
           }
+          sessionStorage.setItem("uid",uid);//保存用户id
+          location.href="index.html";
+        }else{
+          msg1.hide();
+          msg2.show()
+              .html("密码和账户不匹配，请重新输入");
         }
       })
-      // .then(res=>{
-        
-      // })
     //否则单独判断每个输入框的内容并改变对应样式
     }else{
       if(!reg.test(uname)){
