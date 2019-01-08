@@ -54,24 +54,22 @@
                 <span>我的购物车</span>
               </a>
             </div>
-            <div class="count">0</div>
+            <div class="count">{{count}}</div>
           </div>
           <div class="drop_list">
             <div class="no_shopping_list" v-if="!isAdd">购物车中还没有商品，再去逛逛吧！</div>
-            <div class="shopping_list" v-else>
-              <div class="shopping_item" v-for="item of cartList">
-                <a :href="`details.html?id=${item.product_id}`">
-                  <img src="http://127.0.0.1:80/images/index_1L2.jpg" alt="">
-                  <span>大润窑10头汝窑茶具</span>
-                </a> 
+            <div class="shopping_list" v-else :style="shoplistStyle">
+              <div class="shopping_item" v-for="(item,i) of cartList" :style="i!=0?'border-top:1px solid #ddd;':''">
+                <a :href="`details.html?id=${item.pid}`"><img :src="item.sm" alt=""></a> 
+                <a :href="`details.html?id=${item.pid}`"><span>{{item.title}}</span></a> 
                 <div class="PD">
-                  <span>85.00</span>
-                  <span>删除</span>
+                  <span>{{item.price.toFixed(2)}} x {{item.count}}</span>
+                  <span @click="delItem" :data-id="item.id">删除</span>
                 </div>
               </div>
             </div>
             <div class="balance">
-              <span>共 0 件</span><span>￥99.00</span><span><a href="javascript:;" class="font_white font_bold">结算</a></span>
+              <span>共 {{count}} 件</span><span>￥{{getTotal}}</span><span><a href="javascript:;" class="font_white font_bold">结算</a></span>
             </div>
           </div>
         </div>
@@ -84,7 +82,7 @@
             <a class="font_white" href="index.html">所有商品分类</a>
             <span class="arrow"></span>
           </div>
-          <ul class="drop_menu">
+          <ul class="drop_menu" :style="ulStyle">
             <li v-for="(item,i) of nav_list" :key="item.id" class="side_list" :class="i==0?'first':'other'">
               <div class="side_btn">
                 <img class="smallicon" :src="item.path">

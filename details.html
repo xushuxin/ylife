@@ -11,7 +11,7 @@
 </head>
 <body>
 <header id="header"></header>
-<section id="section">
+<section id="section" v-cloak>
     <nav class="nav">
       <div class="container clearfix">
         <span class="font_14 font_bold"><a href="">{{product.cname}}</a></span>
@@ -94,16 +94,16 @@
         </div>
         <div class="buy_info">
           <div class="goods_select">
-            <div class="clearfix" >
+            <div class="clearfix" v-show="product.spec_title1!=null">
               <dt>{{product.spec_title1}}:</dt>
               <dd>
-                <div class="active" v-for="(spec1,i) of specs1" :key="i">{{spec1.specs}}</div>
+                <div v-for="(sp,i) of specs" :key="i" :class="sp.id==id?'active':''" @click="change1" :data-id="sp.id" >{{sp.spec1}}</div>
               </dd>
             </div>
-            <div class="clearfix" >
+            <div class="clearfix" v-show="product.spec_title2!=null">
               <dt>{{product.spec_title2}}:</dt>
-              <dd >
-                <div class="active" v-for="(spec2,j) of specs2" :key="j">{{spec2.specs}}</div>
+              <dd>
+                <div :class="sp.id==id?'active':''" @click="change2" :data-id="sp.id"  v-for="(sp,j) of specs" :key="j">{{sp.spec2}}</div>
               </dd>
             </div>
           </div>
@@ -117,15 +117,15 @@
           </div>
           <div class="selected clearfix">
             <dt>已&nbsp;&nbsp;选&nbsp;&nbsp;择:</dt>
-            <dd class="font_bold">
-              <span v-for="(spec1,i) of specs1" :key="i">
-                "{{spec1.specs}}"
+            <dd class="font_bold"  v-show="product.spec_title1!=null">
+              <span>
+                "{{product.spec1}}"
               </span>
             </dd>
-            <dd class="font_bold">
-              <span v-for="(spec2,j) of specs2" :key="j">
-                <span v-show="j>=0">,</span>
-                "{{spec2.specs}}"
+            <dd class="font_bold" v-show="product.spec_title2!=null">
+              <span>
+                <span>,</span>
+                "{{product.spec2}}"
               </span>
             </dd>
           </div>
@@ -256,45 +256,47 @@
             <div class="question fl" @click="tap" data-id="content4">商品咨询</div>
           </div>
         </div>
-        <div id="content1" class="clearfix">
-          <div class="mainContent fl">
-            <ul class="clearfix message">
-              <li class="fl">商品名称：大润窑10头汝窑茶具</li>
-              <li class="fl">商品编号：201510201609141</li>
-              <li class="fl">店铺： 优生活商城</li>
-              <li class="fl">时间：2018-06-27 21:13:39</li>
-              <li class="fl">价格 ：0-299</li>
-              <li class="fl">材质 ：汝窑</li>
-              <li class="fl">选购热点 ：热卖款</li>
-            </ul>
-            <div class="goods_dimg">
-              <img src="http://127.0.0.1/images/details/1479197339131.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197331399.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197325358.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197318543.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197311212.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197307828.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197300574.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197297125.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197293060.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197286310.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197282862.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197280118.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197276755.jpg" alt="">
-              <img src="http://127.0.0.1/images/details/1479197272918.jpg" alt="">
+        <div class="content">
+          <div id="content1" class="clearfix">
+            <div class="mainContent fl">
+              <ul class="clearfix message">
+                <li class="fl">商品名称：大润窑10头汝窑茶具</li>
+                <li class="fl">商品编号：201510201609141</li>
+                <li class="fl">店铺： 优生活商城</li>
+                <li class="fl">时间：2018-06-27 21:13:39</li>
+                <li class="fl">价格 ：0-299</li>
+                <li class="fl">材质 ：汝窑</li>
+                <li class="fl">选购热点 ：热卖款</li>
+              </ul>
+              <div class="goods_dimg">
+                <img src="http://127.0.0.1/images/details/1479197339131.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197331399.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197325358.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197318543.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197311212.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197307828.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197300574.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197297125.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197293060.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197286310.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197282862.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197280118.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197276755.jpg" alt="">
+                <img src="http://127.0.0.1/images/details/1479197272918.jpg" alt="">
+              </div>
+            </div>
+            <div class="aside fr">
+              <ul>
+                <li><a href="javascript:;" @click="skip" data-id="detail">商品详情</a></li>
+                <li><a href="javascript:;" @click="skip" data-id="ensure">售后保障</a></li>
+                <li><a href="javascript:;" @click="skip" data-id="declare">责任声明</a></li>
+              </ul>
             </div>
           </div>
-          <div class="aside fr">
-            <ul>
-              <li><a href="javascript:;" @click="skip" data-id="detail">商品详情</a></li>
-              <li><a href="javascript:;" @click="skip" data-id="ensure">售后保障</a></li>
-              <li><a href="javascript:;" @click="skip" data-id="declare">责任声明</a></li>
-            </ul>
-          </div>
+          <div id="content2">规格参数</div>
+          <div id="content3">商品评价</div>
+          <div id="content4">商品咨询</div>
         </div>
-        <div id="content2">规格参数</div>
-        <div id="content3">商品评价</div>
-        <div id="content4">商品咨询</div>
       </div>
       <div id="ensure"></div>
       <div id="declare"></div>

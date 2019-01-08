@@ -7,8 +7,7 @@ new Vue({
     return{
       product:{price:0},
       id:null,
-      specs1:[],
-      specs2:[],
+      specs:[],
       pics:[],
       attenClass:{attended:false},//关注的爱心样式类名
       index:0,//指示器，当前第几张图片
@@ -17,14 +16,15 @@ new Vue({
   },
   methods:{
     getGoodsInfo(){
+      this.id=location.search.split("=")[1];//加载页面时获得商品id
       axios.get("http://127.0.0.1:80/details?id="+this.id).then(res=>{
         this.product=res.data.product;
-        this.specs1=res.data.specs1;
-        this.specs2=res.data.specs2;
+        this.specs=res.data.specs;
         this.pics=res.data.pics;
+        var num=this.pics.length;
         this.$nextTick(function(){//必须窗口加载后执行，否则获得的offsetTop是相对于当前组件最外层元素
           (function(){
-            myCarousel({el:".sImg",num:6,showNum:5,width:62,isAuto:false,isCircle:false});
+            myCarousel({el:".sImg",num:num,showNum:5,width:62,isAuto:false,isCircle:false});
           })();
           var els=document.querySelectorAll("[data-toggle=fixed]");
           var btn=els[0];
@@ -48,6 +48,14 @@ new Vue({
         
       })
     },
+    change1(e){
+      this.id=e.target.dataset.id;
+      location.href="details.html?id="+this.id;
+    },
+    change2(e){
+      this.id=e.target.dataset.id;
+      location.href="details.html?id="+this.id;
+    },
     changeStyle(e){
       this.index=e.target.dataset.id;
     },
@@ -63,15 +71,16 @@ new Vue({
       var btns=btn.parentNode.querySelectorAll("div");
       var id=btn.dataset.id;
       var content=document.getElementById(id);
-      var contents=content.parentNode.querySelectorAll("div");
+      var contents=document.querySelectorAll(".main>.content>div");
+      console.log(contents);
       btns.forEach(el => {
         el.className=el.className.replace(" active","");
       });
       btn.className+=" active";
       contents.forEach(el=>{
-        el.style.zIndex="";
+        el.style.display="none";
       })
-      content.style.zIndex=10;
+      content.style.display="block";
     },
     addCart(e){
       // 获得三个参数
@@ -83,14 +92,12 @@ new Vue({
       axios.defaults.withCredentials = true;
       axios.post(url,params).then(res=>{
         alert(res.data.msg);
-        sessionStorage.setItem("isAdd",true);
-        console.log(sessionStorage);
       })
     },
     increment(){
       if(this.count<99){
         this.count++;
-        this.count=this.count.toString();
+        this.count=this.count.toString();//转为字符串类型，否则无法使用字符串的API
       }
     },
     reduce(){
@@ -101,8 +108,7 @@ new Vue({
     }
      
   },
-  mounted(){
-    this.id=location.search.split("=")[1];//加载页面时获得商品id
+  created(){
     this.getGoodsInfo();//获得商品详情信息
   },
   watch:{
@@ -112,7 +118,6 @@ new Vue({
       }else{
         this.count=val.replace(/\D/g,'')//非数字转为空字符
       }
-      
     }
   }
 })

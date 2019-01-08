@@ -26,7 +26,10 @@
         isLogin:false,
         kwords:"",
         string:"",//用于保存地址栏的查询字符串?kwords=...
-        isAdd:false
+        isAdd:false,
+        count:0,
+        ulStyle:{"display":"none"},
+        shoplistStyle:{"overflow-y":""}
       } 
     },
     methods:{
@@ -62,28 +65,38 @@
         if(uid!=undefined){
           axios.defaults.withCredentials=true;
           axios.get("http://127.0.0.1:80/shopcart/getCartItem?uid="+uid).then(res=>{
-            this.cartList=res.data.list;
-            if(this.cartList.length>0) this.isAdd=true; 
+              this.cartList=res.data.list;
+              this.count=this.cartList.length;
+              this.isAdd=this.count>0;
+              if(this.count>2){
+                this.shoplistStyle.overflowY="scroll";
+              }
           })
+        }else{
+          this.isAdd=false;
+          this.count=0;
         }
+      },
+      delItem(e){
+        var count=0;
+        var id=e.target.dataset.id;
+        var url="http://127.0.0.1:80/shopcart/update"
+        var params=`count=${count}&id=${id}`
+        axios.post(url,params).then(res=>{
+          this.getCartItem();
+        })
       }
     },
     created(){
+      this.loginStatus();
       if(this.isLogin){
         this.getCartItem();
       }
     },
     mounted(){
-      this.loginStatus();
       this.string=location.search;
       if(location.href.indexOf("index.html")!=-1){//地址栏如果是index.html
-        document.querySelector("#nav>ul>li.drop_list .drop_menu").style.display="block";
-      }
-    },
-    updated() {
-      this.isAdd=sessionStorage.getItem("isAdd");
-      if(this.isAdd){
-        this.getCartItem();
+        this.ulStyle.display="block";
       }
     },
     watch:{
@@ -92,6 +105,18 @@
           this.kwords=decodeURIComponent(val.split("=")[1]);//decodeURIComponent解码数字以及字母汉字，decodeURI只解码空格
           // console.log(this.kwords)
         }
+      },
+      cartList(){//监听购物车列表
+        this.getCartItem();
+      }
+    },
+    computed:{
+      getTotal(){//计算购物车内所有商品价格的和
+        var sum=0;
+        for(var item of this.cartList){
+          sum+=item.price*item.count;
+        }
+        return sum;
       }
     }
    })

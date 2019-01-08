@@ -167,9 +167,6 @@ var vm4=new Vue({
       // axios.get()
     }
   },
-  create(){
-
-  },
   mounted(){
     //2F轮播
     (function(){

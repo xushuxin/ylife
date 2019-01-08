@@ -174,7 +174,6 @@
   display:none;
   position:absolute;
   width:333px;
-  height:100px;
   top:100%;
   right:0px;
   z-index:2;
@@ -189,6 +188,7 @@
   border-style:solid;
   border-color:#D5D4D4;
   background:#ffffff;
+  max-height:144px;
 }
 /* 加入购物车的商品样式 */
 .no_shopping_list{
@@ -204,18 +204,21 @@
   line-height:normal;
   justify-content:space-between;
 }
+#header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item>a:nth-child(2){
+  width:50%;
+}
 
 #header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item img{
  width:50px;
  height:50px;
  border:1px solid #C9C8C6;
- vertical-align: top;
  margin-right:5px;
 }
 #header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item>a>span:hover{
   color:#D40000;
 }
 #header2>.shopping_cart>.drop_list>.shopping_list>.shopping_item .PD{
+  width:25%;
   display:flex;
   flex-direction:column;
 }
@@ -308,7 +311,7 @@
   border-bottom:1px solid #E5E5E5;
 }
 #nav .drop_list:hover .drop_menu{
-  display:block;
+  display:block !important;
 }
 
 #nav .drop_list .drop_menu .side_list{

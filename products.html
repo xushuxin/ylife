@@ -119,9 +119,15 @@
                 <div class="title"><a :href="`details.html?id=${item.id}`" v-color="change" :data-title="item.title" :data-kwords="kwords">{{item.title}}</a></div>
                 <div class="status">{{item.isCount==1?"有货":"无货"}}</div>
                 <div class="operation clearfix">
-                  <span @click="contrast"><img src="http://127.0.0.1:80/images/no-check.jpg" alt="">对比</span>
-                  <span @click="attention"><img src="http://127.0.0.1:80/images/g-love.png" alt="">关注</span>
-                  <span @click="add"><img src="http://127.0.0.1:80/images/cart.png" alt="">加入购物车</span>
+                  <span @click="contrast" onselectstart="return false;">
+                    <img src="http://127.0.0.1:80/images/no-check.jpg" alt="">对比
+                  </span>
+                  <span @click="attention" onselectstart="return false;">
+                    <img src="http://127.0.0.1:80/images/g-love.png" alt="">关注
+                  </span>
+                  <span @click="add" :data-pid="item.id" onselectstart="return false;">
+                    <img src="http://127.0.0.1:80/images/cart.png" alt="">加入购物车
+                  </span>
                 </div>
               </div>
             </li> 

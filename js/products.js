@@ -114,8 +114,15 @@ new Vue({
         img.src="http://127.0.0.1:80/images/r-love.png";
       }
     },
-    add(){
-
+    add(e){
+      var url="http://127.0.0.1:80/shopcart/addCart";
+      var uid=sessionStorage.getItem("uid");
+      var pid=e.currentTarget.dataset.pid;
+      var count=1;
+      var params=`uid=${uid}&pid=${pid}&count=${count}`;
+      axios.post(url,params).then(res=>{
+        alert(res.data.msg);
+      })
     }
   },
   created(){

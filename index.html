@@ -14,7 +14,7 @@
     <div class="carousel">
       <!--轮播图主体-->
       <div class="car_img">
-        <a href="#" v-for="(item,i) of carousel_list" :key="i" :class="i==index_id?'active':''">
+        <a :href="item.href" v-for="(item,i) of carousel_list" :key="i" :class="i==index_id?'active':''">
           <img :src="item.src" alt="" >
         </a>
       </div>
@@ -29,7 +29,7 @@
       <div class="scroll_box">
         <ul class="today_img" :style="`transition:${transition};margin-left:${marginLeft}px;`">
           <li v-for="(item,i) of today_list">
-            <a :src="item.href"><img :src="item.img_url" alt=""></a>
+            <a :href="item.href"><img :src="item.img_url" alt=""></a>
           </li>
         </ul> 
       </div>
@@ -44,8 +44,8 @@
       </h1>
       <ul class="rec_box">
         <li class="hot_item" v-for="item of hot_list" v-cloak>
-          <a href="item.href"><img :src="item.img_url" alt=""> </a>
-          <p><a href="">{{item.title}}</a></p>
+          <a :href="item.href"><img :src="item.img_url" alt=""> </a>
+          <p><a :href="item.href">{{item.title}}</a></p>
           <p>￥<span>{{item.price}}</span></p>
         </li>
       </ul>
